@@ -22,7 +22,7 @@ public class Enemymove : MonoBehaviour {
 
 		float ahead = Vector3.Dot (transform.up, (playerLocation.position - transform.position).normalized);
 		float direction = Vector3.Dot (transform.right, (playerLocation.position - transform.position).normalized);
-		Debug.Log( ahead );
+
 
 		if (direction > 0.05) {
 			transform.Rotate (0, 0, -rotationSpeed);

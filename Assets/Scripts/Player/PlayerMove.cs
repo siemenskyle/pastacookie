@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Move : MonoBehaviour {
+public class PlayerMove : MonoBehaviour {
 
     public float speed;
     public float rotationSpeed;
@@ -20,15 +20,15 @@ public class Move : MonoBehaviour {
 	void FixedUpdate () {
 		if (Input.GetKey(KeyCode.W))
         {
-			anim.SetBool ("Forward", true);
 			rbody.AddForce(transform.up * speed);
+			anim.SetBool ("Forward", true);
         }
 
         // Reverse
 		if (Input.GetKey(KeyCode.S))
         {
-			anim.SetBool ("Reverse", true);
 			rbody.AddForce(-transform.up * speed);
+			anim.SetBool ("Reverse", true);
         }
 
         // Rotate Left or strafe left

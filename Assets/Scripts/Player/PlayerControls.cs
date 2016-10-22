@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerControls : MonoBehaviour {
 
+	PlayerMissile missileScript;
 	PlayerTurret turretScript;
 	string[] weaponsList;
 	string selectedWeapon;
@@ -19,7 +20,7 @@ public class PlayerControls : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		checkFireWeapons ();
-
+		checkSwitchWeapon ();
 	}
 
 	void checkFireWeapons() {
@@ -28,10 +29,23 @@ public class PlayerControls : MonoBehaviour {
 		}
 	}
 
+	void checkSwitchWeapon() {
+		if (Input.GetKeyDown(KeyCode.Tab)) {
+			fireWeapon ();
+		}
+	}
+
+	void switchWeapon() {
+
+	}
+
 	void fireWeapon() {
 		switch (selectedWeapon) {
 		case "turret":
 			turretScript.shoot ();
+			break;
+		case "missile":
+			missileScript.shoot ();
 			break;
 		}
 	}

@@ -24,7 +24,6 @@ public class PlayerManagement : Entity
 	public int alterAmmo(int change){
 		if (ammo + change > 0) {
 			ammo += change;
-			return ammo;
 		}
 		return ammo;
 	}
@@ -32,7 +31,6 @@ public class PlayerManagement : Entity
 	public int alterEnergy(int change){
 		if (energy + change > 0) {
 			energy += change;
-			return energy;
 		}
 		return energy;
 	}
@@ -40,7 +38,6 @@ public class PlayerManagement : Entity
 	public int alterScrap(int change){
 		if (scrap + change > 0) {
 			scrap += change;
-			return scrap;
 		}
 		return scrap;
 	}

@@ -11,6 +11,7 @@ public class PlayerControls : MonoBehaviour {
 	void Start () {
 		weaponsList = new string[1];
 		weaponsList[0] = "turret";
+		weaponsList[1] = "missile";
 		selectedWeapon = "turret";
 		turretScript = gameObject.GetComponent<PlayerTurret> ();
 	}

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerManagement : Entity 
 {
+	public enum Resource {AMMO, ENERGY, SCRAP};
 	// Use this for initialization
 	public int scrap;
 	public int energy;
@@ -20,7 +21,7 @@ public class PlayerManagement : Entity
 	void FixedUpdate () {
 	
 	}
-
+		
 	public int alterAmmo(int change){
 		if (ammo + change > 0) {
 			ammo += change;

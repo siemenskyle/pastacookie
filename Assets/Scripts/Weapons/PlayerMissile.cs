@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerTurret : MonoBehaviour {
+public class PlayerMissile : MonoBehaviour {
 
 	Resources resources;
 	public GameObject bulletPrefab;

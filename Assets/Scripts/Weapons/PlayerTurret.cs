@@ -17,6 +17,7 @@ public class PlayerTurret : MonoBehaviour {
 			Vector2 cursorPosition = Camera.main.ScreenToWorldPoint( Input.mousePosition );
 			Vector2 cursorDirection = new Vector2(cursorPosition.x - transform.position.x, cursorPosition.y - transform.position.y);
 			Debug.Log (cursorDirection);
+			Debug.Log (transform.rotation);
 			shoot (transform.position, cursorDirection);
 		}
 	}
@@ -28,9 +29,11 @@ public class PlayerTurret : MonoBehaviour {
 		// Add bullet shoot speed to the velocity
 		Vector3 addedVelocity = startingAngle.normalized * velocity;
 
+		float angle = Mathf.Atan2(startingAngle.y, startingAngle.x) * Mathf.Rad2Deg - 90f;
+
 		// Instantiate the bullet
 		startingVelocity = new Vector2 (startingVelocity.x + addedVelocity.x, startingVelocity.y + addedVelocity.y);
-		GameObject spawnedBullet = (GameObject)Instantiate(bulletPrefab, startingPosition, transform.rotation);
+		GameObject spawnedBullet = (GameObject)Instantiate(bulletPrefab, startingPosition, Quaternion.Euler(new Vector3(0, 0, angle)));
 		spawnedBullet.GetComponent<Rigidbody2D> ().velocity = startingVelocity;
 	}
 }

@@ -16,7 +16,7 @@ public class PlayerMove : MonoBehaviour {
 		anim = GetComponent<Animator> ();
 	}
 	
-	// Update is called once per frame
+	// Update is bad dont use it
 	void FixedUpdate () {
 		if (Input.GetKey(KeyCode.W))
         {

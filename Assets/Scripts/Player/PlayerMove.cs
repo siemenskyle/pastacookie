@@ -10,25 +10,35 @@ public class PlayerMove : MonoBehaviour {
 	Rigidbody2D rbody;
 	Animator anim;
 
+	Animator br,bm,bl;
+	//SpriteRenderer br, bm, bl;
+
     // Use this for initialization
     void Start () {
 		rbody = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator> ();
+		bm = GetComponentsInChildren<Animator> ()[1];
+		bl = GetComponentsInChildren<Animator>()[2];
+		br = GetComponentsInChildren<Animator>()[3];
 	}
 	
 	// Update is bad dont use it
 	void FixedUpdate () {
+		bm.SetBool ("On", false);
+		bl.SetBool ("On", false);
+		br.SetBool ("On", false);
+
 		if (Input.GetKey(KeyCode.W))
         {
 			rbody.AddForce(transform.up * speed);
-			anim.SetBool ("Forward", true);
+			bm.SetBool ("On", true);
         }
 
         // Reverse
 		if (Input.GetKey(KeyCode.S))
         {
 			rbody.AddForce(-transform.up * speed);
-			anim.SetBool ("Reverse", true);
+			//anim.SetBool ("Reverse", true);
         }
 
         // Rotate Left or strafe left
@@ -36,10 +46,11 @@ public class PlayerMove : MonoBehaviour {
         {
 			if (altControl) {
 				transform.Rotate (0, 0, rotationSpeed);
-				anim.SetBool ("RotateLeft", true);
+				//anim.SetBool ("RotateLeft", true);
+				br.SetBool("On", true);
 			} else {
 				rbody.AddForce (-transform.right * speed);
-				anim.SetBool ("StrafeLeft", true);
+				//anim.SetBool ("StrafeLeft", true);
 			}
         }
 
@@ -48,10 +59,11 @@ public class PlayerMove : MonoBehaviour {
         {
 			if (altControl) {
 				transform.Rotate (0, 0, -rotationSpeed);
-				anim.SetBool ("RotateRight", true);
+				//anim.SetBool ("RotateRight", true);
+				bl.SetBool("On", true);
 			} else {
 				rbody.AddForce (transform.right * speed);
-				anim.SetBool ("StrafeRight", true);
+				//anim.SetBool ("StrafeRight", true);
 			}
 		}
 
@@ -60,10 +72,11 @@ public class PlayerMove : MonoBehaviour {
 		{
 			if (altControl) {
 				rbody.AddForce (-transform.right * speed);
-				anim.SetBool ("StrafeLeft", true);
+				//anim.SetBool ("StrafeLeft", true);
 			} else {
 				transform.Rotate (0, 0, rotationSpeed);
-				anim.SetBool ("RotateLeft", true);
+				//anim.SetBool ("RotateLeft", true);
+				br.SetBool("On", true);
 			}
 		}
 
@@ -72,11 +85,13 @@ public class PlayerMove : MonoBehaviour {
 		{
 			if (altControl) {
 				rbody.AddForce (transform.right * speed);
-				anim.SetBool ("RotateRight", true);
+				//anim.SetBool ("RotateRight", true);
 			} else {
 				transform.Rotate (0, 0, -rotationSpeed);
-				anim.SetBool ("RotateRight", true);
+				//anim.SetBool ("RotateRight", true);
+				bl.SetBool("On", true);
 			}
 		}
+		//bm.flipX = true;
     }
 }

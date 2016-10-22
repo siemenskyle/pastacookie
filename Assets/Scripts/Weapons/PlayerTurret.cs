@@ -16,8 +16,6 @@ public class PlayerTurret : MonoBehaviour {
 		if (Input.GetKeyDown ("space")) {
 			Vector2 cursorPosition = Camera.main.ScreenToWorldPoint( Input.mousePosition );
 			Vector2 cursorDirection = new Vector2(cursorPosition.x - transform.position.x, cursorPosition.y - transform.position.y);
-			Debug.Log (cursorDirection);
-			Debug.Log (transform.rotation);
 			shoot (transform.position, cursorDirection);
 		}
 	}

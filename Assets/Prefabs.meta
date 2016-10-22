@@ -1,7 +1,13 @@
 fileFormatVersion: 2
-guid: d8ca251834dbc464ca5c81ceba7ce72c
+<<<<<<< HEAD
+guid: a322dd8adad00cb4fbeb3d5c0eafaad7
 folderAsset: yes
-timeCreated: 1477154933
+timeCreated: 1477153837
+=======
+guid: 20d5aaa7a4ea0436fb3434158389847e
+folderAsset: yes
+timeCreated: 1477151643
+>>>>>>> combat
 licenseType: Free
 DefaultImporter:
   userData: 

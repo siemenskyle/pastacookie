@@ -14,18 +14,23 @@ public class PlayerTurret : MonoBehaviour {
 
 	void FixedUpdate() {
 		if (Input.GetKeyDown ("space")) {
-			shoot (transform.position, 0f);
+			Vector2 cursorPosition = Camera.main.ScreenToWorldPoint( Input.mousePosition );
+			Vector2 cursorDirection = new Vector2(cursorPosition.x - transform.position.x, cursorPosition.y - transform.position.y);
+			Debug.Log (cursorDirection);
+			shoot (transform.position, cursorDirection);
 		}
 	}
 
-	void shoot(Vector3 start, float angle) {
-		// Set inital position
-		start = transform.position;
+	void shoot(Vector3 startingPosition, Vector2 startingAngle) {
+		// Make current ships movement added to the velocity
 		Vector2 startingVelocity = transform.GetComponent<Rigidbody2D> ().velocity;
-		Vector3 addedVelocity = transform.up.normalized * velocity;
-		startingVelocity = new Vector2 (startingVelocity.x + addedVelocity.x, startingVelocity.y + addedVelocity.y);
-		GameObject spawnedBullet = (GameObject)Instantiate(bulletPrefab, start, transform.rotation);
-		spawnedBullet.GetComponent<Rigidbody2D> ().velocity = startingVelocity;
 
+		// Add bullet shoot speed to the velocity
+		Vector3 addedVelocity = startingAngle.normalized * velocity;
+
+		// Instantiate the bullet
+		startingVelocity = new Vector2 (startingVelocity.x + addedVelocity.x, startingVelocity.y + addedVelocity.y);
+		GameObject spawnedBullet = (GameObject)Instantiate(bulletPrefab, startingPosition, transform.rotation);
+		spawnedBullet.GetComponent<Rigidbody2D> ().velocity = startingVelocity;
 	}
 }

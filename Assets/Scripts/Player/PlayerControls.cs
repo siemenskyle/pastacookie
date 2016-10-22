@@ -6,14 +6,14 @@ public class PlayerControls : MonoBehaviour {
 	PlayerMissile missileScript;
 	PlayerTurret turretScript;
 	string[] weaponsList;
-	string selectedWeapon;
+	int selectedWeaponIndex;
 
 	// Use this for initialization
 	void Start () {
 		weaponsList = new string[2];
 		weaponsList[0] = "turret";
 		weaponsList[1] = "missile";
-		selectedWeapon = "turret";
+		selectedWeaponIndex = 0;
 		turretScript = gameObject.GetComponent<PlayerTurret> ();
 		missileScript = gameObject.GetComponent<PlayerMissile> ();
 	}
@@ -32,16 +32,19 @@ public class PlayerControls : MonoBehaviour {
 
 	void checkSwitchWeapon() {
 		if (Input.GetKeyDown(KeyCode.Tab)) {
-			fireWeapon ();
+			switchWeapon ();
 		}
 	}
 
 	void switchWeapon() {
-
+		selectedWeaponIndex += 1;
+		if (selectedWeaponIndex >= weaponsList.Length) {
+			selectedWeaponIndex = 0;
+		}
 	}
 
 	void fireWeapon() {
-		switch (selectedWeapon) {
+		switch (weaponsList[selectedWeaponIndex]) {
 		case "turret":
 			turretScript.shoot ();
 			break;

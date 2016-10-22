@@ -7,16 +7,22 @@ public class MissileScript : MonoBehaviour {
 	LinkedList<GameObject> targets;
 	GameObject currentTarget;
 	public float rotationSpeed;
+	public float speed;
 
-	void OnTriggerEnter2D(Collider2D col) {
-		if (col.tag != "enemy") {
+	void OnTriggerStay2D(Collider2D col) {
+		if (col.gameObject.tag != "enemy") {
 			return;
 		}
-		targets.AddLast(col.gameObject);
+		if (!targets.Contains (col.gameObject)) {
+			targets.AddLast (col.gameObject);
+			if (targets.Count == 1) {
+				currentTarget = col.gameObject;
+			}
+		}
 	}
 
 	void OnTriggerExit2D(Collider2D col) {
-		if (col.tag != "enemy") {
+		if (col.gameObject.tag != "enemy") {
 			return;
 		}
 		targets.Remove (col.gameObject);
@@ -28,15 +34,16 @@ public class MissileScript : MonoBehaviour {
 	}
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		targets = new LinkedList<GameObject>();
+		rotationSpeed = 5f;
+		speed = 4f;
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
 		if (currentTarget) {
 			float direction = Vector3.Dot (transform.right, (currentTarget.transform.position - transform.position).normalized);
-			//Debug.Log( ahead );
 
 			if (direction > 0.05) {
 				transform.Rotate (0, 0, -rotationSpeed);
@@ -45,6 +52,7 @@ public class MissileScript : MonoBehaviour {
 				transform.Rotate (0, 0, rotationSpeed);
 				//anim.SetBool ("RotateLeft", true);
 			}
+			gameObject.GetComponent<Rigidbody2D>().AddForce (transform.up * speed);
 		}
 	}
 }

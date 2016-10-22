@@ -14,7 +14,6 @@ public class PlayerTurret : MonoBehaviour {
 
 	public void shoot() {
 		Vector3 startingPosition = GetWorldPositionOnPlane(Input.mousePosition, 0f);
-		Debug.Log (startingPosition);
 		Vector2 startingAngle = new Vector2(startingPosition.x - transform.position.x, startingPosition.y - transform.position.y);
 		// Make current ships movement added to the velocity
 		Vector2 startingVelocity = transform.GetComponent<Rigidbody2D> ().velocity;

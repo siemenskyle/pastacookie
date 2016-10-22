@@ -10,7 +10,7 @@ public class Resource : MonoBehaviour {
 		Debug.Log (collider.gameObject.tag);
 		if (collider.gameObject.tag == "Player") {
 			if (gameObject.tag == "energy")
-				collider.gameObject.GetComponent<PlayerManagement> ().alterAmmo (resource);
+				collider.gameObject.GetComponent<PlayerManagement> ().alterEnergy (resource);
 			if (gameObject.tag == "scrap")
 				collider.gameObject.GetComponent<PlayerManagement> ().alterScrap (resource);
 			this.gameObject.GetComponent<SpriteRenderer>().enabled = false;

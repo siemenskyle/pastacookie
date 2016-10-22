@@ -15,28 +15,28 @@ public class PlayerResources : MonoBehaviour {
 		ammo = 0;
 	}
 
-	bool alterAmmo(int change){
+	int alterAmmo(int change){
 		if (ammo + change > 0) {
 			ammo += change;
-			return true;
+			return ammo;
 		}
-		return false;
+		return ammo;
 	}
 
-	bool alterEnergy(int change){
+	int alterEnergy(int change){
 		if (energy + change > 0) {
 			energy += change;
-			return true;
+			return energy;
 		}
-		return false;
+		return energy;
 	}
 
-	bool alterScrap(int change){
+	int alterScrap(int change){
 		if (scrap + change > 0) {
 			scrap += change;
-			return true;
+			return scrap;
 		}
-		return false;
+		return scrap;
 	}
 
 	int getAmmo(){

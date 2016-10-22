@@ -15,6 +15,7 @@ public class PlayerControls : MonoBehaviour {
 		weaponsList[1] = "missile";
 		selectedWeapon = "turret";
 		turretScript = gameObject.GetComponent<PlayerTurret> ();
+		missileScript = gameObject.GetComponent<PlayerMissile> ();
 	}
 	
 	// Update is called once per frame

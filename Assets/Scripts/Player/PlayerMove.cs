@@ -6,6 +6,9 @@ public class PlayerMove : MonoBehaviour {
     public float speed;
     public float rotationSpeed;
 	public bool altControl;
+	public bool boost;
+	public float boostMult;
+	public KeyCode boostKey;
 
 	Rigidbody2D rbody;
 	Animator anim;
@@ -28,9 +31,18 @@ public class PlayerMove : MonoBehaviour {
 		bl.SetBool ("On", false);
 		br.SetBool ("On", false);
 
+		if (Input.GetKey (boostKey))
+			boost = true;
+		else
+			boost = false;
+
 		if (Input.GetKey(KeyCode.W))
         {
-			rbody.AddForce(transform.up * speed);
+			float thisspeed = speed;
+			if (boost)
+				thisspeed *= boostMult;
+			
+			rbody.AddForce(transform.up * thisspeed);
 			bm.SetBool ("On", true);
         }
 
@@ -38,7 +50,6 @@ public class PlayerMove : MonoBehaviour {
 		if (Input.GetKey(KeyCode.S))
         {
 			rbody.AddForce(-transform.up * speed);
-			//anim.SetBool ("Reverse", true);
         }
 
         // Rotate Left or strafe left
@@ -46,7 +57,6 @@ public class PlayerMove : MonoBehaviour {
         {
 			if (altControl) {
 				transform.Rotate (0, 0, rotationSpeed);
-				//anim.SetBool ("RotateLeft", true);
 				br.SetBool("On", true);
 			} else {
 				rbody.AddForce (-transform.right * speed);
@@ -59,7 +69,6 @@ public class PlayerMove : MonoBehaviour {
         {
 			if (altControl) {
 				transform.Rotate (0, 0, -rotationSpeed);
-				//anim.SetBool ("RotateRight", true);
 				bl.SetBool("On", true);
 			} else {
 				rbody.AddForce (transform.right * speed);
@@ -72,10 +81,8 @@ public class PlayerMove : MonoBehaviour {
 		{
 			if (altControl) {
 				rbody.AddForce (-transform.right * speed);
-				//anim.SetBool ("StrafeLeft", true);
 			} else {
 				transform.Rotate (0, 0, rotationSpeed);
-				//anim.SetBool ("RotateLeft", true);
 				br.SetBool("On", true);
 			}
 		}
@@ -85,10 +92,8 @@ public class PlayerMove : MonoBehaviour {
 		{
 			if (altControl) {
 				rbody.AddForce (transform.right * speed);
-				//anim.SetBool ("RotateRight", true);
 			} else {
 				transform.Rotate (0, 0, -rotationSpeed);
-				//anim.SetBool ("RotateRight", true);
 				bl.SetBool("On", true);
 			}
 		}

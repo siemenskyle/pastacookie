@@ -18,7 +18,6 @@ public class PlayerResources : MonoBehaviour {
 	int alterAmmo(int change){
 		if (ammo + change > 0) {
 			ammo += change;
-			return ammo;
 		}
 		return ammo;
 	}
@@ -26,7 +25,6 @@ public class PlayerResources : MonoBehaviour {
 	int alterEnergy(int change){
 		if (energy + change > 0) {
 			energy += change;
-			return energy;
 		}
 		return energy;
 	}
@@ -34,7 +32,6 @@ public class PlayerResources : MonoBehaviour {
 	int alterScrap(int change){
 		if (scrap + change > 0) {
 			scrap += change;
-			return scrap;
 		}
 		return scrap;
 	}

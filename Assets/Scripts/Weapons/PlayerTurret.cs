@@ -20,7 +20,7 @@ public class PlayerTurret : MonoBehaviour {
 
 	void shoot(Vector3 start, float angle) {
 		// Set inital position
-		start += transform.up.normalized;
+		start = transform.position;
 		Vector2 startingVelocity = transform.GetComponent<Rigidbody2D> ().velocity;
 		Vector3 addedVelocity = transform.up.normalized * velocity;
 		startingVelocity = new Vector2 (startingVelocity.x + addedVelocity.x, startingVelocity.y + addedVelocity.y);

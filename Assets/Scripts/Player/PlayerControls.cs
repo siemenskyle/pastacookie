@@ -9,7 +9,7 @@ public class PlayerControls : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		weaponsList = new string[1];
+		weaponsList = new string[2];
 		weaponsList[0] = "turret";
 		weaponsList[1] = "missile";
 		selectedWeapon = "turret";

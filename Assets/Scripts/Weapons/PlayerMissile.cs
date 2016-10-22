@@ -28,6 +28,7 @@ public class PlayerMissile : MonoBehaviour {
 		GameObject spawnedBullet = (GameObject)Instantiate(bulletPrefab, transform.position, Quaternion.Euler(new Vector3(0, 0, angle)));
 		spawnedBullet.GetComponent<Rigidbody2D> ().velocity = startingVelocity;
 		spawnedBullet.AddComponent<MissileScript> ();
+		DestroyObject (spawnedBullet, 10f);
 	}
 
 	public Vector3 GetWorldPositionOnPlane(Vector3 screenPosition, float z) {

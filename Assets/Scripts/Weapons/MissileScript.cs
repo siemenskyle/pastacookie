@@ -37,7 +37,7 @@ public class MissileScript : MonoBehaviour {
 	void Awake () {
 		targets = new LinkedList<GameObject>();
 		rotationSpeed = 5f;
-		speed = 4f;
+		speed = 10f;
 	}
 	
 	// Update is called once per frame
@@ -52,6 +52,7 @@ public class MissileScript : MonoBehaviour {
 				transform.Rotate (0, 0, rotationSpeed);
 				//anim.SetBool ("RotateLeft", true);
 			}
+			Debug.Log(gameObject.GetComponent<Rigidbody2D>().velocity);
 			gameObject.GetComponent<Rigidbody2D>().AddForce (transform.up * speed);
 		}
 	}

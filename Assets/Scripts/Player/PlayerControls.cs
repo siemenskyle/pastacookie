@@ -57,7 +57,7 @@ public class PlayerControls : MonoBehaviour {
 	{
 		if (Input.GetKeyDown ("r")) {
 			if ((player.getScrap () >= repairCost) && (player.getCurrentHull() < player.getMaxHull())) {
-				player.alterScrap (repairCost);
+				player.alterScrap (-repairCost);
 				player.repairDamageHull (1);
 			}
 		}

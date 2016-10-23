@@ -20,6 +20,7 @@ public class Upgrades : MonoBehaviour {
 	int[] missileLevelStrength;
 	int[] laserLevelStrength;
 	int[] thrusterLevelStrength;
+	float[] BoostLevelStrength;
 	int[] hullLevelStrength;
 
 	public PlayerMove movement;
@@ -48,8 +49,9 @@ public class Upgrades : MonoBehaviour {
 		turretLevelStrength = new int[4]{6, 10, 15, 25};
 		missileLevelStrength = new int[4]{30, 40, 60, 100};
 		laserLevelStrength = new int[4]{3, 5, 8, 12};
-		thrusterLevelStrength = new int[4]{2, 3, 4, 5};
-		hullLevelStrength = new int[4]{3, 4, 6, 10};
+		thrusterLevelStrength = new int[4]{4, 6, 8, 10};
+		BoostLevelStrength = new float[4]{3.0f, 3.5f, 4.0f, 5.0f};
+		hullLevelStrength = new int[4]{10, 12, 15, 20};
 
 		movement = gameObject.GetComponent<PlayerMove> ();
 		turret = gameObject.GetComponent<PlayerTurret> ();
@@ -61,19 +63,19 @@ public class Upgrades : MonoBehaviour {
 
 	// Update is called once per frame
 	void FixedUpdate () {
-		if (Input.GetKey (KeyCode.LeftShift) && Input.GetKeyDown ("1")) {
+		if (Input.GetKeyDown ("1")) {
 			upgradeTurret ();
 		}
-		if (Input.GetKey (KeyCode.LeftShift) && Input.GetKeyDown ("2")) {
+		if (Input.GetKeyDown ("2")) {
 			upgradeMissile ();
 		}
-		if (Input.GetKey (KeyCode.LeftShift) && Input.GetKeyDown ("3")) {
+		if (Input.GetKeyDown ("3")) {
 			upgradeLaser ();
 		}
-		if (Input.GetKey (KeyCode.LeftShift) && Input.GetKeyDown ("4")) {
+		if (Input.GetKeyDown ("5")) {
 			upgradeMovement ();
 		}
-		if (Input.GetKey (KeyCode.LeftShift) && Input.GetKeyDown ("5")) {
+		if (Input.GetKeyDown ("4")) {
 			upgradeHull ();
 		}
 	}
@@ -105,7 +107,9 @@ public class Upgrades : MonoBehaviour {
 		if (laserLevel == maxLevel)
 			return;
 		if (player.getScrap() >= laserUpgradeCost [laserLevel]) {
-			
+			player.alterScrap (-laserUpgradeCost[laserLevel]);
+			laserLevel += 1;
+			playerControls.setLaserDamage (laserLevelStrength [laserLevel]);
 		}
 	}
 
@@ -117,6 +121,7 @@ public class Upgrades : MonoBehaviour {
 			player.alterScrap (-thrusterUpgradeCost[thrusterLevel]);
 			thrusterLevel += 1;
 			movement.speed = thrusterLevelStrength [thrusterLevel];
+			movement.boostMult = BoostLevelStrength [thrusterLevel];
 		}
 	}
 
@@ -162,11 +167,12 @@ public class Upgrades : MonoBehaviour {
 	}
 	public void setLaserStartStat()
 	{
-		// TODO laserLevelStrength [0];
+		playerControls.setLaserDamage(laserLevelStrength [0]);
 	}
 	public void setThrusterStartStat()
 	{
 		movement.speed = thrusterLevelStrength [0];
+		movement.boostMult = BoostLevelStrength [0];
 	}
 	public void setHullStartStat()
 	{

@@ -7,7 +7,11 @@ public class UI_Script : MonoBehaviour {
 	public GUIText scrapText;
 	public GUIText ammoText;
 	public GUIText healthText;
+	public GUIText turretLevel;
+	public GUIText missileLevel;
+	public GUIText laserLevel;
 	public PlayerManagement playerData;
+	public Upgrades upgrade;
 
 	private int damageDur;
 
@@ -27,6 +31,9 @@ public class UI_Script : MonoBehaviour {
 		scrapText.text = playerData.getScrap ().ToString();
 		ammoText.text = playerData.getAmmo ().ToString();
 		healthText.text = playerData.getCurrentHull ().ToString ();
+		turretLevel.text = upgrade.turretLevel.ToString ();
+		missileLevel.text = upgrade.missileLevel.ToString ();
+		laserLevel.text = upgrade.laserLevel.ToString ();
 	}
 
 }

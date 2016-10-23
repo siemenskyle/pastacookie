@@ -15,7 +15,6 @@ public class PlayerManagement : Entity
 
 	void Start ()
 	{
-		health = StartingStats.getStartingHealth ();
 		alterAmmo(StartingStats.getStartingAmmo());
 		alterEnergy(StartingStats.getStartingEnergy());
 		alterScrap(StartingStats.getStartingScrap());

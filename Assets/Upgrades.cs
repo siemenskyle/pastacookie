@@ -22,11 +22,11 @@ public class Upgrades : MonoBehaviour {
 	int[] thrusterLevelStrength;
 	int[] hullLevelStrength;
 
-	PlayerMove movement;
-	PlayerTurret turret;
-	PlayerMissile missile;
-	LaserScript laser;
-	PlayerManagement player;
+	public PlayerMove movement;
+	public PlayerTurret turret;
+	public PlayerMissile missile;
+	public LaserScript laser;
+	public PlayerManagement player;
 	PlayerControls playerControls;
 
 	// Use this for initialization
@@ -56,6 +56,7 @@ public class Upgrades : MonoBehaviour {
 		missile = gameObject.GetComponent<PlayerMissile> ();
 		laser = gameObject.GetComponent<LaserScript> ();
 		player = gameObject.GetComponent<PlayerManagement> ();
+		playerControls = gameObject.GetComponent<PlayerControls> ();
 	}
 
 	// Update is called once per frame
@@ -81,7 +82,7 @@ public class Upgrades : MonoBehaviour {
 	{
 		if (turretLevel == maxLevel)
 			return;
-		if (player.getScrap() > turretUpgradeCost [turretLevel]) {
+		if (player.getScrap() >= turretUpgradeCost [turretLevel]) {
 			player.alterScrap (-turretUpgradeCost[turretLevel]); // cost matrix is from 0-2 so, yes, this is in the right place; before the increment
 			turretLevel += 1;
 			playerControls.setTurretDamage (turretLevelStrength [turretLevel]);
@@ -92,7 +93,7 @@ public class Upgrades : MonoBehaviour {
 	{
 		if (missileLevel == maxLevel)
 			return;
-		if (player.getScrap() > missileUpgradeCost [missileLevel]) {
+		if (player.getScrap() >= missileUpgradeCost [missileLevel]) {
 			player.alterScrap (-missileUpgradeCost[missileLevel]);
 			missileLevel += 1;
 			playerControls.setMissileDamage (missileLevelStrength [missileLevel]);
@@ -103,7 +104,7 @@ public class Upgrades : MonoBehaviour {
 	{
 		if (laserLevel == maxLevel)
 			return;
-		if (player.getScrap() > laserUpgradeCost [laserLevel]) {
+		if (player.getScrap() >= laserUpgradeCost [laserLevel]) {
 			
 		}
 	}
@@ -112,7 +113,7 @@ public class Upgrades : MonoBehaviour {
 	{
 		if (thrusterLevel == maxLevel)
 			return;
-		if (player.getScrap() > thrusterUpgradeCost [thrusterLevel]) {
+		if (player.getScrap() >= thrusterUpgradeCost [thrusterLevel]) {
 			player.alterScrap (-thrusterUpgradeCost[thrusterLevel]);
 			thrusterLevel += 1;
 			movement.speed = thrusterLevelStrength [thrusterLevel];
@@ -123,7 +124,7 @@ public class Upgrades : MonoBehaviour {
 	{
 		if (hullLevel == maxLevel)
 			return;
-		if (player.getScrap() > hullUpgradeCost [hullLevel]) {
+		if (player.getScrap() >= hullUpgradeCost [hullLevel]) {
 			player.alterScrap (-hullUpgradeCost[hullLevel]);
 			hullLevel += 1;
 			player.setMaxHull(hullLevelStrength [hullLevel]);
@@ -169,6 +170,7 @@ public class Upgrades : MonoBehaviour {
 	}
 	public void setHullStartStat()
 	{
+		Debug.Log (hullLevelStrength [0]);
 		player.setMaxHull(hullLevelStrength [0]);
 	}
 

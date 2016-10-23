@@ -36,7 +36,7 @@ public class LaserScript : MonoBehaviour {
 		} else {
 			lr.SetPosition (1, targetnew);
 		}
-		GameObject.Destroy (myLine, 1f);
+		GameObject.Destroy (myLine, 0.2f);
 	}
 
 	public Vector3 GetWorldPositionOnPlane(Vector3 screenPosition, float z) {

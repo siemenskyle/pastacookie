@@ -29,6 +29,7 @@ public class Entity : MonoBehaviour {
 
 	public int alterHealth(int change){
 		health += change;
+		Debug.Log (health);
 		return health;
 	}
 }

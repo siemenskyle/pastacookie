@@ -13,6 +13,12 @@ public class EndScreenStars : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (Input.anyKey)
+        {
+            Application.LoadLevel("TestScene");
+        }
+
         if (xPos <= -20)
         {
             xPos = 20;

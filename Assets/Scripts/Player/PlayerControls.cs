@@ -48,7 +48,6 @@ public class PlayerControls : MonoBehaviour {
 	}
 
 	void fireWeapon() {
-		Debug.Log (Time.time);
 		switch (weaponsList[selectedWeaponIndex]) {
 		case "turret":
 			turretScript.shoot ();

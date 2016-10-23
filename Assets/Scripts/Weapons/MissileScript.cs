@@ -8,26 +8,23 @@ public class MissileScript : MonoBehaviour {
 	GameObject currentTarget;
 	public float rotationSpeed;
 	public float speed;
-
-	void OnTriggerEnter2D(Collider2D col) {
-		if (!targets.Contains (col.gameObject)) {
-			return;
-		}
-		if (Vector3.Distance (col.gameObject.transform.position, gameObject.transform.position) <= 10) {
-			foreach (GameObject enemy in targets) {
-				Debug.Log("got here"); //move allthis to onstay
-			}
-		}
-	}
+	private float largeRadius = 100f;
+	private float smallRadius = 50f;
 
 	void OnTriggerStay2D(Collider2D col) {
 		if (col.gameObject.tag != "enemy") {
 			return;
 		}
+		gameObject.GetComponent<CircleCollider2D> ().radius = largeRadius;
 		if (!targets.Contains (col.gameObject)) {
 			targets.AddLast (col.gameObject);
 			if (targets.Count == 1) {
 				currentTarget = col.gameObject;
+			}
+		} else if (Vector3.Distance (col.gameObject.transform.position, gameObject.transform.position) <= 2f) {
+			foreach (GameObject enemy in targets) {
+				col.gameObject.GetComponent<EnemyHealth> ().alterHealth (-100);
+				Destroy (gameObject);
 			}
 		}
 	}
@@ -41,6 +38,7 @@ public class MissileScript : MonoBehaviour {
 			currentTarget = targets.First.Value;
 		} else {
 			currentTarget = null;
+			gameObject.GetComponent<CircleCollider2D> ().radius = smallRadius;
 		}
 	}
 
@@ -48,7 +46,7 @@ public class MissileScript : MonoBehaviour {
 	void Awake () {
 		targets = new LinkedList<GameObject>();
 		rotationSpeed = 5f;
-		speed = 10f;
+		speed = 20f;
 	}
 	
 	// Update is called once per frame
@@ -64,7 +62,8 @@ public class MissileScript : MonoBehaviour {
 				//anim.SetBool ("RotateLeft", true);
 			}
 			//Debug.Log(gameObject.GetComponent<Rigidbody2D>().velocity);
-			gameObject.GetComponent<Rigidbody2D>().AddForce (transform.up * speed);
+			float addedSpeed = Vector3.Distance(currentTarget.transform.position, transform.position) < 8f ? Vector3.Distance(currentTarget.transform.position, transform.position) : 8f;
+			gameObject.GetComponent<Rigidbody2D>().AddForce (transform.up * speed/addedSpeed);
 		}
 	}
 }

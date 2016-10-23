@@ -17,7 +17,7 @@ public class EnemyHealth : MonoBehaviour {
 	}
 
 	public int alterHealth(int change) {
-		health -= change;
+		health += change;
 		return health;
 	}
 }

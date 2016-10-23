@@ -12,7 +12,7 @@ public class PlayerMissile : MonoBehaviour {
 		//this.resources = gameObject.GetComponent<Resources> ();
 	}
 
-	public void shoot() {
+	public void shoot(int damage) {
 		Vector2 startingPosition = GetWorldPositionOnPlane((Input.mousePosition ), 0f);
 		Vector2 startingAngle = new Vector2(startingPosition.x - transform.position.x, startingPosition.y - transform.position.y);
 		// Make current ships movement added to the velocity
@@ -27,7 +27,8 @@ public class PlayerMissile : MonoBehaviour {
 		startingVelocity = new Vector2 (startingVelocity.x + addedVelocity.x, startingVelocity.y + addedVelocity.y);
 		GameObject spawnedBullet = (GameObject)Instantiate(missilePrefab, transform.position, Quaternion.Euler(new Vector3(0, 0, angle)));
 		spawnedBullet.GetComponent<Rigidbody2D> ().velocity = startingVelocity;
-		spawnedBullet.AddComponent<MissileScript> ();
+		MissileScript newMissileScript = spawnedBullet.AddComponent<MissileScript> ();
+		newMissileScript.setDamage (damage);
 		DestroyObject (spawnedBullet, 10f);
 	}
 

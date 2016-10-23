@@ -3,10 +3,11 @@ using System.Collections;
 
 public class BulletScript : MonoBehaviour {
 
-	public int damage = 0;
+	public int damage = 20;
+	public string target = "enemy";
 
 	void OnTriggerEnter2D(Collider2D col) {
-		if (col.gameObject.tag == "enemy") {
+		if (col.gameObject.tag == target) {
 			col.gameObject.GetComponent<Entity> ().alterHealth(-damage);
 			Destroy (gameObject);
 		}
@@ -16,4 +17,14 @@ public class BulletScript : MonoBehaviour {
 	void Start () {
 		
 	}
+
+	public int setDamage(int newDamage) {
+		damage = newDamage;
+		return damage;
+	}
+
+	public int getDamage() {
+		return damage;
+	}
+
 }

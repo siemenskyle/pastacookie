@@ -7,8 +7,8 @@ public class PlayerMove : MonoBehaviour {
     public float rotationSpeed;
 	public bool altControl;
 	public bool boost;
+	public bool moving;
 	public float boostMult;
-	public KeyCode boostKey;
 
 	Rigidbody2D rbody;
 	Animator anim;
@@ -27,34 +27,39 @@ public class PlayerMove : MonoBehaviour {
 	
 	// Update is bad dont use it
 	void FixedUpdate () {
+		moving = false;
 		bm.SetBool ("On", false);
 		bl.SetBool ("On", false);
 		br.SetBool ("On", false);
 
-		if (Input.GetKey (boostKey))
+		if (Input.GetKey (KeyCode.Space))
 			boost = true;
 		else
 			boost = false;
 
-		if (Input.GetKey(KeyCode.W))
-        {
+		if (Input.GetKey (KeyCode.W)) {
+			moving = true;
 			float thisspeed = speed;
 			if (boost)
 				thisspeed *= boostMult;
 			
-			rbody.AddForce(transform.up * thisspeed);
+			rbody.AddForce (transform.up * thisspeed);
 			bm.SetBool ("On", true);
-        }
+		} else {
+			boost = false;
+		}
 
         // Reverse
 		if (Input.GetKey(KeyCode.S))
         {
+			moving = true;
 			rbody.AddForce(-transform.up * speed);
         }
 
         // Rotate Left or strafe left
         if (Input.GetKey(KeyCode.Q))
         {
+			moving = true;
 			if (altControl) {
 				transform.Rotate (0, 0, rotationSpeed);
 				br.SetBool("On", true);
@@ -67,6 +72,7 @@ public class PlayerMove : MonoBehaviour {
         // Rotate Right or strafe right
         if (Input.GetKey(KeyCode.E))
         {
+			moving = true;
 			if (altControl) {
 				transform.Rotate (0, 0, -rotationSpeed);
 				bl.SetBool("On", true);
@@ -79,6 +85,7 @@ public class PlayerMove : MonoBehaviour {
 		// Strafe Left or rotate left
 		if (Input.GetKey(KeyCode.A))
 		{
+			moving = true;
 			if (altControl) {
 				rbody.AddForce (-transform.right * speed);
 			} else {
@@ -90,6 +97,7 @@ public class PlayerMove : MonoBehaviour {
 		// Strafe Right or rotate right
 		if (Input.GetKey(KeyCode.D))
 		{
+			moving = true;
 			if (altControl) {
 				rbody.AddForce (transform.right * speed);
 			} else {
@@ -97,6 +105,5 @@ public class PlayerMove : MonoBehaviour {
 				bl.SetBool("On", true);
 			}
 		}
-		//bm.flipX = true;
     }
 }

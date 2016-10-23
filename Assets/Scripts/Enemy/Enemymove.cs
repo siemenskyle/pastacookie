@@ -5,7 +5,6 @@ public class Enemymove : MonoBehaviour {
 
 	public float speed;
 	public float rotationSpeed;
-	public Transform playerLocation;
 	public float sightRange;
 	public float effectiveRange;
 	public float closeRange;
@@ -13,10 +12,11 @@ public class Enemymove : MonoBehaviour {
 	public bool strafeRight;
 
 	Rigidbody2D rbody;
-
+	Transform playerLocation;
 	// Use this for initialization
 	void Start () {
 		rbody = GetComponent<Rigidbody2D>();
+		playerLocation = GameObject.FindGameObjectWithTag ("Player").transform;
 	}
 
 	// Update is bad dont use it

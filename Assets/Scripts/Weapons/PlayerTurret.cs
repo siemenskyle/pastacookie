@@ -27,6 +27,7 @@ public class PlayerTurret : MonoBehaviour {
 		startingVelocity = new Vector2 (startingVelocity.x + addedVelocity.x, startingVelocity.y + addedVelocity.y);
 		GameObject spawnedBullet = (GameObject)Instantiate(bulletPrefab, transform.position, Quaternion.Euler(new Vector3(0, 0, angle)));
 		spawnedBullet.GetComponent<Rigidbody2D> ().velocity = startingVelocity;
+		DestroyObject (spawnedBullet, 10f);
 	}
 
 	public Vector3 GetWorldPositionOnPlane(Vector3 screenPosition, float z) {

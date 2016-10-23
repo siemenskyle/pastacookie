@@ -17,8 +17,7 @@ public class Entity : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (health <= 0) {
-			GameObject ex = (GameObject) Object.Instantiate (explode);
-			//Invoke ("kill", 0.1f);
+			//GameObject ex = (GameObject) Object.Instantiate (explode, transform);
 			Destroy (gameObject);
 		}
 	}

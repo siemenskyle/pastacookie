@@ -14,13 +14,12 @@ public class PlayerMove : MonoBehaviour {
 	Animator anim;
 
 	Animator br,bm,bl;
-	//SpriteRenderer br, bm, bl;
 
     // Use this for initialization
     void Start () {
 		rbody = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator> ();
-		bm = GetComponentsInChildren<Animator> ()[1];
+		bm = GetComponentsInChildren<Animator>()[1];
 		bl = GetComponentsInChildren<Animator>()[2];
 		br = GetComponentsInChildren<Animator>()[3];
 	}
@@ -65,7 +64,6 @@ public class PlayerMove : MonoBehaviour {
 				br.SetBool("On", true);
 			} else {
 				rbody.AddForce (-transform.right * speed);
-				//anim.SetBool ("StrafeLeft", true);
 			}
         }
 

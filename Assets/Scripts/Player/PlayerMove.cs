@@ -9,6 +9,9 @@ public class PlayerMove : MonoBehaviour {
 	public bool boost;
 	public bool moving;
 	public float boostMult;
+	public float time;
+	public int boostCost;
+	public int boostTick;
 
 	Rigidbody2D rbody;
 	Animator anim;
@@ -22,6 +25,7 @@ public class PlayerMove : MonoBehaviour {
 		bm = GetComponentsInChildren<Animator>()[1];
 		bl = GetComponentsInChildren<Animator>()[2];
 		br = GetComponentsInChildren<Animator>()[3];
+		time = 0;
 	}
 	
 	// Update is bad dont use it
@@ -31,8 +35,18 @@ public class PlayerMove : MonoBehaviour {
 		bl.SetBool ("On", false);
 		br.SetBool ("On", false);
 
-		if (Input.GetKey (KeyCode.Space))
+		if (Input.GetKey (KeyCode.LeftShift))
+		{
 			boost = true;
+			time = time + Time.deltaTime;
+			if (time >= boostTick) {
+				this.gameObject.GetComponent<PlayerManagement> ().alterEnergy (-boostCost);
+				time = 0;
+			}
+			if (this.gameObject.GetComponent<PlayerManagement> ().getEnergy () == 0) {
+				boost = false;
+			}
+		}
 		else
 			boost = false;
 

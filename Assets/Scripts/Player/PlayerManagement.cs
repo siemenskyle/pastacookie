@@ -4,10 +4,12 @@ using System.Collections;
 public class PlayerManagement : Entity 
 {
 	public enum Resource {AMMO, ENERGY, SCRAP};
+	public enum WeaponType {GUNS, MISSILES, LASERS};
 	// Use this for initialization
 	public int scrap;
 	public int energy;
 	public int ammo;
+	public WeaponType weaponType;
 
 	void Start ()
 	{
@@ -34,6 +36,16 @@ public class PlayerManagement : Entity
 			energy += change;
 		}
 		return energy;
+	}
+
+	public void setWeaponType(WeaponType type)
+	{
+		weaponType = type;
+	}
+
+	public WeaponType getWeaponType()
+	{
+		return weaponType;
 	}
 
 	public int alterScrap(int change){

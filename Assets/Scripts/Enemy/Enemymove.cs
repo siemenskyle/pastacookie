@@ -17,6 +17,15 @@ public class Enemymove : MonoBehaviour {
 	void Start () {
 		rbody = GetComponent<Rigidbody2D>();
 		playerLocation = GameObject.FindGameObjectWithTag ("Player").transform;
+		int strafeChoice = Random.Range(0, 2);
+		switch (strafeChoice) {
+		case 0:
+			strafeLeft = true;
+			break;
+		case 1:
+			strafeRight = true;
+			break;
+		}
 	}
 
 	// Update is bad dont use it

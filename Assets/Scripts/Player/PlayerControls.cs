@@ -7,6 +7,8 @@ public class PlayerControls : MonoBehaviour {
 	PlayerTurret turretScript;
 	string[] weaponsList;
 	int selectedWeaponIndex;
+	float missileCooldown;
+	float missileOnCooldownUntil;
 
 	// Use this for initialization
 	void Start () {
@@ -16,6 +18,8 @@ public class PlayerControls : MonoBehaviour {
 		selectedWeaponIndex = 0;
 		turretScript = gameObject.GetComponent<PlayerTurret> ();
 		missileScript = gameObject.GetComponent<PlayerMissile> ();
+		missileCooldown = 3f;
+		missileOnCooldownUntil = Time.time;
 	}
 	
 	// Update is called once per frame
@@ -44,12 +48,16 @@ public class PlayerControls : MonoBehaviour {
 	}
 
 	void fireWeapon() {
+		Debug.Log (Time.time);
 		switch (weaponsList[selectedWeaponIndex]) {
 		case "turret":
 			turretScript.shoot ();
 			break;
 		case "missile":
-			missileScript.shoot ();
+			if (missileOnCooldownUntil < Time.time) {
+				missileScript.shoot ();
+				missileOnCooldownUntil = Time.time + missileCooldown;
+			}
 			break;
 		}
 	}

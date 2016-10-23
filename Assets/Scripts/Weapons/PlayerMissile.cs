@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerMissile : MonoBehaviour {
 
 	Resources resources;
-	public GameObject bulletPrefab;
+	public GameObject missilePrefab;
 	public float velocity;
 
 	// Use this for initialization
@@ -25,7 +25,7 @@ public class PlayerMissile : MonoBehaviour {
 
 		// Instantiate the bullet
 		startingVelocity = new Vector2 (startingVelocity.x + addedVelocity.x, startingVelocity.y + addedVelocity.y);
-		GameObject spawnedBullet = (GameObject)Instantiate(bulletPrefab, transform.position, Quaternion.Euler(new Vector3(0, 0, angle)));
+		GameObject spawnedBullet = (GameObject)Instantiate(missilePrefab, transform.position, Quaternion.Euler(new Vector3(0, 0, angle)));
 		spawnedBullet.GetComponent<Rigidbody2D> ().velocity = startingVelocity;
 		spawnedBullet.AddComponent<MissileScript> ();
 		DestroyObject (spawnedBullet, 10f);

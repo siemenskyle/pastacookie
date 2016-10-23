@@ -18,9 +18,7 @@ public class Entity : MonoBehaviour {
 
 
 	public int alterHealth(int change){
-		if (health + change > 0) {
-			health += change;
-		}
+		health += change;
 		return health;
 	}
 }

@@ -8,11 +8,11 @@ public class EnemyAttack : MonoBehaviour {
 	public GameObject bulletPrefab;
 	public int bulletVelocity;
 	public float cooldownTimer;
+	public float cooldown;
 	public int enemyDamage;
 
 	// Use this for initialization
 	void Start () {
-		bulletVelocity = 8;
 		predictionScript = gameObject.GetComponent<TragectoryIntercept>();
 		predictionScript.bulletVelocity = bulletVelocity;
 		cooldownTimer = 0f;
@@ -24,7 +24,7 @@ public class EnemyAttack : MonoBehaviour {
 			enemyMoveScript = gameObject.GetComponent<Enemymove> ();
 		}
 		if (cooldownTimer < Time.time && Vector3.Distance (gameObject.transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) <= enemyMoveScript.effectiveRange) {
-			cooldownTimer = Time.time + 3f;
+			cooldownTimer = Time.time + cooldown;
 			attack ();
 		}
 	}

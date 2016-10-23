@@ -130,4 +130,9 @@ public class PlayerControls : MonoBehaviour {
 	{
 		missileDamage = damage;
 	}
+
+	public void setLaserDamage(int damage)
+	{
+		laserDamage = damage;
+	}
 }

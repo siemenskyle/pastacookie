@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-
 public class Upgrades : MonoBehaviour {
 
 	public int turretLevel;
@@ -11,11 +10,17 @@ public class Upgrades : MonoBehaviour {
 
 	public int maxLevel;
 
-	int[] missileUpgradeCost;
 	int[] turretUpgradeCost;
+	int[] missileUpgradeCost;
 	int[] laserUpgradeCost;
 	int[] thrusterUpgradeCost;
 	int[] hullUpgradeCost;
+
+	int[] turretLevelStrength;
+	int[] missileLevelStrength;
+	int[] laserLevelStrength;
+	int[] thrusterLevelStrength;
+	int[] hullLevelStrength;
 
 	PlayerMove movement;
 	PlayerTurret turret;
@@ -39,13 +44,19 @@ public class Upgrades : MonoBehaviour {
 		thrusterUpgradeCost = new int[3]{3, 4, 5};
 		hullUpgradeCost = new int[3]{3, 4, 5};
 
+		turretLevelStrength = new int[3]{10, 15, 25};
+		missileLevelStrength = new int[3]{40, 60, 100};
+		laserLevelStrength = new int[3]{5, 8, 12};
+		thrusterLevelStrength = new int[3]{3, 4, 5};
+		hullLevelStrength = new int[3]{4, 6, 10};
+
 		movement = gameObject.GetComponent<PlayerMove> ();
 		turret = gameObject.GetComponent<PlayerTurret> ();
 		missile = gameObject.GetComponent<PlayerMissile> ();
 		laser = gameObject.GetComponent<LaserScript> ();
 		player = gameObject.GetComponent<PlayerManagement> ();
 	}
-	
+
 	// Update is called once per frame
 	void FixedUpdate () {
 		if (Input.GetKey (KeyCode.LeftShift) && Input.GetKeyDown ("1")) {
@@ -70,26 +81,43 @@ public class Upgrades : MonoBehaviour {
 		if (turretLevel == 3)
 			return;
 		if (player.getScrap() > turretUpgradeCost [turretLevel]) {
+
 		}
 	}
 
 	void upgradeMissile()
 	{
-		
+		if (missileLevel == 3)
+			return;
+		if (player.getScrap() > missileUpgradeCost [missileLevel]) {
+
+		}
 	}
 
 	void upgradeLaser()
 	{
+		if (laserLevel == 3)
+			return;
+		if (player.getScrap() > laserUpgradeCost [laserLevel]) {
 
+		}
 	}
 
 	void upgradeMovement()
 	{
-		
+		if (thrusterLevel == 3)
+			return;
+		if (player.getScrap() > thrusterUpgradeCost [thrusterLevel]) {
+
+		}
 	}
 
 	void upgradeHull()
 	{
-		
+		if (hullLevel == 3)
+			return;
+		if (player.getScrap() > hullUpgradeCost [hullLevel]) {
+
+		}
 	}
 }

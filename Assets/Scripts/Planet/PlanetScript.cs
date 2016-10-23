@@ -7,6 +7,9 @@ public class PlanetScript : MonoBehaviour {
 	/// </summary>
 	// Use this for initialization
 
+	public bool inGravityWell;
+	public GUIText warning;
+
 	public float smallDistance = 10.0f; //Distance at which you start getting affected by gravity
 	public float smallGravity = 2.0f; //strength at which the gravity pulls
 
@@ -29,6 +32,7 @@ public class PlanetScript : MonoBehaviour {
 	private GameObject[] Sun; 
 
 	void Start () {
+		inGravityWell = false;
 		planets1 = GameObject.FindGameObjectsWithTag ("Planet1");
 		planets2 = GameObject.FindGameObjectsWithTag ("Planet2");
 		planets3 = GameObject.FindGameObjectsWithTag ("Planet3");
@@ -53,5 +57,15 @@ public class PlanetScript : MonoBehaviour {
 				GetComponent<Rigidbody2D> ().AddForce (v.normalized * (1.0f - distance / maxDistance) * force);
 			}
 		}
+		warning.text = "";
+		foreach (GameObject planet in bodies) {
+			Debug.Log ("HERE");
+			float distance = Vector3.Distance (planet.transform.position, transform.position);
+			if (distance <= maxDistance) {
+				warning.text = "WARNING: GRAVITY WELL";
+				break;
+			}
+		}
+
 	}
 }

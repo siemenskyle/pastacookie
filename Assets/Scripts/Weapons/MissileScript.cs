@@ -10,7 +10,7 @@ public class MissileScript : MonoBehaviour {
 	public float speed;
 	private float largeRadius = 100f;
 	private float smallRadius = 50f;
-	private float damage;
+	private int damage;
 
 	void OnTriggerStay2D(Collider2D col) {
 		if (col.gameObject.tag != "enemy") {

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BulletScript : MonoBehaviour {
 
-	private float damage;
+	private int damage;
 
 	void OnTriggerEnter2D(Collider2D col) {
 		if (col.gameObject.tag == "enemy") {

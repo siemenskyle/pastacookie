@@ -6,6 +6,7 @@ public class WeaponSelectUI : MonoBehaviour {
 	public PlayerManagement player;
 	public Texture2D missileSelected;
 	public Texture2D turretSelected;
+	public Texture2D laserSelected;
 
 	void Start()
 	{
@@ -23,6 +24,9 @@ public class WeaponSelectUI : MonoBehaviour {
 			break;
 		case PlayerManagement.WeaponType.TURRET:
 			GetComponent<GUITexture>().texture = turretSelected;
+			break;
+		case PlayerManagement.WeaponType.LASERS:
+			GetComponent<GUITexture> ().texture = laserSelected;
 			break;
 		}
 	}

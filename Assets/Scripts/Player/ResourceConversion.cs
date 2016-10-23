@@ -15,10 +15,10 @@ public class ResourceConversion : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (Input.GetKeyDown (KeyCode.X)) {
+		if (Input.GetKeyDown (KeyCode.Z)) {
 			scrapToEnergy ();
 		}
-		if (Input.GetKeyDown (KeyCode.Z)) {
+		if (Input.GetKeyDown (KeyCode.X)) {
 			scrapToAmmo ();
 		}
 	

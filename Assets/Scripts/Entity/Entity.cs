@@ -15,4 +15,12 @@ public class Entity : MonoBehaviour {
 	void Update () {
 	
 	}
+
+
+	public int alterHealth(int change){
+		if (health + change > 0) {
+			health += change;
+		}
+		return health;
+	}
 }

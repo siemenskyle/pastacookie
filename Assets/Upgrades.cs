@@ -176,7 +176,6 @@ public class Upgrades : MonoBehaviour {
 	}
 	public void setHullStartStat()
 	{
-		Debug.Log (hullLevelStrength [0]);
 		player.setMaxHull(hullLevelStrength [0]);
 	}
 

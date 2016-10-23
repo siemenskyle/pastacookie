@@ -49,7 +49,6 @@ public class Boss : EnemyHealth {
 		}
 
 		float healthcol = health/totalhealth;
-		Debug.Log (sprite.color.r);
 		sprite.color = new Color(1, healthcol, healthcol);
 	}
 

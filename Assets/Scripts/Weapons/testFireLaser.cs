@@ -13,7 +13,7 @@ public class testFireLaser : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetMouseButtonDown(1)) {
-			GetComponent<LaserScript> ().FireLaser (this.gameObject, Input.mousePosition,  mask);
+			GetComponent<LaserScript> ().FireLaser (this.gameObject, Input.mousePosition,  mask, 0);
 			stuff++;
 		}
 	}

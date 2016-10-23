@@ -12,7 +12,7 @@ public class LaserScript : MonoBehaviour {
 
 	// Update is called once per frame
 	
-	public void FireLaser(GameObject start, Vector3 target, LayerMask mask)
+	public void FireLaser(GameObject start, Vector3 target, LayerMask mask, int damage)
 	{
 		Vector3 targetnew = GetWorldPositionOnPlane((target ), 0f);
 		Vector3 path = targetnew - start.transform.position;
@@ -32,6 +32,7 @@ public class LaserScript : MonoBehaviour {
 
 		if (!rayInfo.point.Equals(Vector2.zero)) {
 			lr.SetPosition (1, rayInfo.point);
+			damageTarget (rayInfo.transform.gameObject, damage);
 		} else {
 			lr.SetPosition (1, targetnew);
 		}
@@ -44,5 +45,12 @@ public class LaserScript : MonoBehaviour {
 		float distance;
 		xy.Raycast(ray, out distance);
 		return ray.GetPoint(distance);
+	}
+
+	private void damageTarget(GameObject target, int damage) {
+		if (target.tag != "enemy") {
+			return;
+		}
+		target.GetComponent<EnemyHealth> ().alterHealth(-(damage));
 	}
 }

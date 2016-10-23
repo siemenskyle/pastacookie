@@ -49,8 +49,8 @@ public class Upgrades : MonoBehaviour {
 		turretLevelStrength = new int[4]{6, 10, 15, 25};
 		missileLevelStrength = new int[4]{30, 40, 60, 100};
 		laserLevelStrength = new int[4]{3, 5, 8, 12};
-		thrusterLevelStrength = new int[4]{3, 4, 5, 6};
-		BoostLevelStrength = new float[4]{1.4f, 1.6f, 1.8f, 2.2f};
+		thrusterLevelStrength = new int[4]{4, 6, 8, 10};
+		BoostLevelStrength = new float[4]{3.0f, 3.5f, 4.0f, 5.0f};
 		hullLevelStrength = new int[4]{3, 4, 6, 10};
 
 		movement = gameObject.GetComponent<PlayerMove> ();
@@ -72,10 +72,10 @@ public class Upgrades : MonoBehaviour {
 		if (Input.GetKeyDown ("3")) {
 			upgradeLaser ();
 		}
-		if (Input.GetKeyDown ("4")) {
+		if (Input.GetKeyDown ("5")) {
 			upgradeMovement ();
 		}
-		if (Input.GetKeyDown ("5")) {
+		if (Input.GetKeyDown ("4")) {
 			upgradeHull ();
 		}
 	}
@@ -121,6 +121,7 @@ public class Upgrades : MonoBehaviour {
 			player.alterScrap (-thrusterUpgradeCost[thrusterLevel]);
 			thrusterLevel += 1;
 			movement.speed = thrusterLevelStrength [thrusterLevel];
+			movement.boostMult = BoostLevelStrength [thrusterLevel];
 		}
 	}
 
@@ -171,6 +172,7 @@ public class Upgrades : MonoBehaviour {
 	public void setThrusterStartStat()
 	{
 		movement.speed = thrusterLevelStrength [0];
+		movement.boostMult = BoostLevelStrength [0];
 	}
 	public void setHullStartStat()
 	{

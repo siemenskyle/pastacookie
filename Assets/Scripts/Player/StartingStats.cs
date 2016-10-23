@@ -4,7 +4,7 @@ using System.Collections;
 public static class StartingStats : object {
 
 	private static int startingAmmo = 10;
-	private static int startingScrap = 100;
+	private static int startingScrap = 20;
 	private static int startingEnergy = 10;
 
 	public static int getStartingAmmo()

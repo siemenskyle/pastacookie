@@ -40,11 +40,11 @@ public class Upgrades : MonoBehaviour {
 		hullLevel = 0;
 		maxLevel = 3;
 
-		missileUpgradeCost = new int[3]{3, 4, 5};
-		turretUpgradeCost = new int[3]{3, 4, 5};
-		laserUpgradeCost = new int[3]{3, 4, 5};
-		thrusterUpgradeCost = new int[3]{3, 4, 5};
-		hullUpgradeCost = new int[3]{3, 4, 5};
+		missileUpgradeCost = new int[3]{5, 10, 15};
+		turretUpgradeCost = new int[3]{5, 10, 15};
+		laserUpgradeCost = new int[3]{5, 10, 15};
+		thrusterUpgradeCost = new int[3]{5, 10, 15};
+		hullUpgradeCost = new int[3]{5, 10, 15};
 
 		turretLevelStrength = new int[4]{6, 10, 15, 25};
 		missileLevelStrength = new int[4]{30, 40, 60, 100};

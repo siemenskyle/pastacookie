@@ -15,6 +15,7 @@ public class Resource : MonoBehaviour {
 				collider.gameObject.GetComponent<PlayerManagement> ().alterScrap (resource);
 			this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
 			this.gameObject.GetComponent<Collider2D>().enabled = false;
+            Destroy(gameObject);
 		}
 	}
 }

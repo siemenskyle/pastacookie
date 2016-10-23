@@ -11,9 +11,9 @@ public class EnemyHealth : Entity {
 	}
 
 	void FixedUpdate() {
-		if (health <= 0) {
+		/*if (health <= 0) {
 			Destroy (gameObject);
-		}
+		}*/
 	}
 
 }

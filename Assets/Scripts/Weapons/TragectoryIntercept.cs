@@ -4,8 +4,7 @@ using System.Collections;
 public class TragectoryIntercept : MonoBehaviour {
 
 	public GameObject origin;
-	public GameObject target;
-	public Vector3 aimLoc;
+	public Vector2 aimLoc;
 	private Vector3 prevLoc;
 	public Vector3 currentVelocity;
 	public  int bulletVelocity;
@@ -13,27 +12,23 @@ public class TragectoryIntercept : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
 		origin = this.gameObject;
-		prevLoc = target.transform.position;
 		currentVelocity = Vector3.zero;
 	}
 
-	// Update is called once per frame
-	void Update () {
-		if (!target) {
-			return;
-		}
-		Vector3 originPosition = origin.transform.position;
+	public Vector2 calculateTrajectoryToTarget(GameObject target) {
+		//Debug.Log (target.transform.position);
+		Vector3 originPosition = gameObject.transform.position;
 		Vector3 targetPosition = target.transform.position;
 		Vector3 directionToFrom = originPosition - targetPosition;
 
-		currentVelocity = (target.transform.position - prevLoc) / Time.deltaTime;
-		prevLoc = target.transform.position;
+		float distanceToTarget = Vector3.Distance (gameObject.transform.position, directionToFrom);
 
-		float timeToImpact = target.GetComponent<Rigidbody2D> ().velocity.magnitude / bulletVelocity;
+		float timeToImpact = distanceToTarget / bulletVelocity;
 
-		aimLoc = targetPosition + currentVelocity * timeToImpact;
+		aimLoc = new Vector2(targetPosition.x, targetPosition.y) + (target.GetComponent<Rigidbody2D>().velocity * Time.fixedDeltaTime) * timeToImpact;
+		//Debug.Log (aimLoc);
+		return aimLoc;
 	}
 
 }

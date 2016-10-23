@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BulletScript : MonoBehaviour {
 
-	private int damage;
+	public int damage = 20;
 
 	void OnTriggerEnter2D(Collider2D col) {
 		if (col.gameObject.tag == "enemy") {
@@ -15,14 +15,5 @@ public class BulletScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		
-	}
-
-	public int setDamage(int newDamage) {
-		damage = newDamage;
-		return damage;
-	}
-
-	public int getDamage() {
-		return damage;
 	}
 }

@@ -4,7 +4,9 @@ using System.Collections;
 public class Entity : MonoBehaviour {
 
 	public int health;
+	public int maxHealth;
 	public int shields;
+	public int maxShields;
 
 	// Use this for initialization
 	void Start () {

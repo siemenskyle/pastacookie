@@ -53,7 +53,7 @@ public class PlayerManagement : Entity
 	}
 
 	public int alterScrap(int change){
-		if (scrap + change > 0) {
+		if (scrap + change >= 0) {
 			scrap += change;
 		}
 		return scrap;

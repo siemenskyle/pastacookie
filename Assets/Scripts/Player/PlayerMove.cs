@@ -31,7 +31,7 @@ public class PlayerMove : MonoBehaviour {
 		bl.SetBool ("On", false);
 		br.SetBool ("On", false);
 
-		if (Input.GetKey (KeyCode.Space))
+		if (Input.GetKey (KeyCode.LeftShift))
 			boost = true;
 		else
 			boost = false;

@@ -6,7 +6,6 @@ public static class StartingStats : object {
 	private static int startingAmmo = 10;
 	private static int startingScrap = 10;
 	private static int startingEnergy = 10;
-	private static int startingHealth = 10;
 
 	public static int getStartingAmmo()
 	{
@@ -15,10 +14,6 @@ public static class StartingStats : object {
 	public static int getStartingScrap()
 	{
 		return startingScrap;
-	}
-	public static int getStartingHealth()
-	{
-		return startingHealth;
 	}
 	public static int getStartingEnergy()
 	{

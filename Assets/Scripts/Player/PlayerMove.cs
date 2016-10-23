@@ -105,6 +105,5 @@ public class PlayerMove : MonoBehaviour {
 				bl.SetBool("On", true);
 			}
 		}
-		//bm.flipX = true;
     }
 }

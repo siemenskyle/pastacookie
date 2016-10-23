@@ -122,7 +122,6 @@ public class ScanFind : MonoBehaviour {
 
 	void DrawArrows(GameObject closeEnemy, GameObject closeResource, GameObject closePlanet, GameObject sun)
 	{
-		Vector3 local = this.transform.position;
 		if (closeEnemy != null) {
 			GameObject enemyArrow = (GameObject)Instantiate(enemyArrowPrefab, transform.position, Quaternion.Euler(new Vector3(0, 0, 0)));
 			enemyArrow.GetComponent<ArrowPoint> ().target = closeEnemy;

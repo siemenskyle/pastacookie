@@ -11,12 +11,17 @@ public class PlayerManagement : Entity
 	public int ammo;
 	public WeaponType weaponType;
 
+	Upgrades upgrades;
+
 	void Start ()
 	{
 		health = StartingStats.getStartingHealth ();
 		alterAmmo(StartingStats.getStartingAmmo());
 		alterEnergy(StartingStats.getStartingEnergy());
 		alterScrap(StartingStats.getStartingScrap());
+		upgrades = gameObject.GetComponent<Upgrades> ();
+		upgrades.setAllStartUpgrades ();
+		health = maxHealth;
 	}
 	
 	// Update is called once per frame
@@ -66,4 +71,31 @@ public class PlayerManagement : Entity
 	public int getScrap(){
 		return scrap;
 	}
+
+	public int getMaxHull(){
+		return maxHealth;
+	}
+	public int getCurrentHull(){
+		return health;
+	}
+
+	public void setMaxHull(int hull)
+	{
+		maxHealth = hull;
+	}
+
+	/// <summary>
+	/// pass it a negative value for damage
+	/// </summary>
+	/// <param name="repair">Repair.</param>
+	public void repairDamageHull(int amount){
+		health += amount;
+		if (health > maxHealth)
+			health = maxHealth;
+		if (health <= 0) {
+		// TODO death
+		}
+	}
+
+
 }

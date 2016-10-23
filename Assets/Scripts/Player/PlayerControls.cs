@@ -84,4 +84,14 @@ public class PlayerControls : MonoBehaviour {
 			break;
 		}
 	}
+
+	public void setTurretDamage(int damage)
+	{
+		turretDamage = damage;
+	}
+
+	public void setMissileDamage(int damage)
+	{
+		missileDamage = damage;
+	}
 }

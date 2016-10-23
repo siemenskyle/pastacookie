@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Resource : MonoBehaviour {
 
-	private int resource = 10;
+	private int resource = 5;
 
 	private void OnTriggerEnter2D(Collider2D collider)
 	{

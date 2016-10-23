@@ -32,7 +32,6 @@ public class PlanetScript : MonoBehaviour {
 	private GameObject[] Sun; 
 
 	void Start () {
-		inGravityWell = false;
 		planets1 = GameObject.FindGameObjectsWithTag ("Planet1");
 		planets2 = GameObject.FindGameObjectsWithTag ("Planet2");
 		planets3 = GameObject.FindGameObjectsWithTag ("Planet3");
@@ -42,6 +41,7 @@ public class PlanetScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+		warning.text = "";
 		AddGravity (smallDistance, smallGravity, planets1);
 		AddGravity (medDistance, medGravity, planets2);
 		AddGravity (largeDistance, largeGravity, planets3);
@@ -57,9 +57,7 @@ public class PlanetScript : MonoBehaviour {
 				GetComponent<Rigidbody2D> ().AddForce (v.normalized * (1.0f - distance / maxDistance) * force);
 			}
 		}
-		warning.text = "";
 		foreach (GameObject planet in bodies) {
-			Debug.Log ("HERE");
 			float distance = Vector3.Distance (planet.transform.position, transform.position);
 			if (distance <= maxDistance) {
 				warning.text = "WARNING: GRAVITY WELL";

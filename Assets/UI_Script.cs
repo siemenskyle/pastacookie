@@ -12,8 +12,10 @@ public class UI_Script : MonoBehaviour {
 	public GUIText laserLevel;
 	public GUIText hullLevel;
 	public GUIText thrustersLevel;
+	public GUIText gravWarning;
 	public PlayerManagement playerData;
 	public Upgrades upgrade;
+	public PlanetScript gravity;
 
 	private int damageDur;
 
@@ -23,7 +25,7 @@ public class UI_Script : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		setHud();
 	}
 
@@ -38,6 +40,9 @@ public class UI_Script : MonoBehaviour {
 		laserLevel.text = upgrade.laserLevel.ToString ();
 		hullLevel.text = upgrade.hullLevel.ToString ();
 		thrustersLevel.text = upgrade.thrusterLevel.ToString ();
+		//Debug.Log ("9");
+		//gravWarning.enabled = gravity.inGravityWell;
+		//Debug.Log (gravity.inGravityWell);
 	}
 
 }

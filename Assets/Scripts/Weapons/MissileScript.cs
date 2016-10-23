@@ -9,6 +9,17 @@ public class MissileScript : MonoBehaviour {
 	public float rotationSpeed;
 	public float speed;
 
+	void OnTriggerEnter2D(Collider2D col) {
+		if (!targets.Contains (col.gameObject)) {
+			return;
+		}
+		if (Vector3.Distance (col.gameObject.transform.position, gameObject.transform.position) <= 10) {
+			foreach (GameObject enemy in targets) {
+				Debug.Log("got here"); //move allthis to onstay
+			}
+		}
+	}
+
 	void OnTriggerStay2D(Collider2D col) {
 		if (col.gameObject.tag != "enemy") {
 			return;
@@ -52,7 +63,7 @@ public class MissileScript : MonoBehaviour {
 				transform.Rotate (0, 0, rotationSpeed);
 				//anim.SetBool ("RotateLeft", true);
 			}
-			Debug.Log(gameObject.GetComponent<Rigidbody2D>().velocity);
+			//Debug.Log(gameObject.GetComponent<Rigidbody2D>().velocity);
 			gameObject.GetComponent<Rigidbody2D>().AddForce (transform.up * speed);
 		}
 	}

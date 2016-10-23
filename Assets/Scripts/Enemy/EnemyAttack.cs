@@ -34,7 +34,6 @@ public class EnemyAttack : MonoBehaviour {
 		newBulletScript.target = "Player";
 		Vector2 targetFutureLocation = predictionScript.calculateTrajectoryToTarget (GameObject.FindGameObjectWithTag("Player"));
 		spawnedBullet.GetComponent<Rigidbody2D> ().velocity = new Vector2(targetFutureLocation.x - gameObject.transform.position.x, targetFutureLocation.y - gameObject.transform.position.y).normalized * bulletVelocity;
-		Debug.Log (targetFutureLocation);
 		DestroyObject (spawnedBullet, 10f);
 	}
 

@@ -17,7 +17,6 @@ public class TragectoryIntercept : MonoBehaviour {
 	}
 
 	public Vector2 calculateTrajectoryToTarget(GameObject target) {
-		//Debug.Log (target.transform.position);
 		Vector3 originPosition = gameObject.transform.position;
 		Vector3 targetPosition = target.transform.position;
 		Vector3 directionToFrom = originPosition - targetPosition;
@@ -27,7 +26,6 @@ public class TragectoryIntercept : MonoBehaviour {
 		float timeToImpact = distanceToTarget / bulletVelocity;
 
 		aimLoc = new Vector2(targetPosition.x, targetPosition.y) + (target.GetComponent<Rigidbody2D>().velocity * Time.fixedDeltaTime) * timeToImpact;
-		//Debug.Log (aimLoc);
 		return aimLoc;
 	}
 

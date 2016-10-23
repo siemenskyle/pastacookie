@@ -87,12 +87,6 @@ public class PlayerControls : MonoBehaviour {
 	}
 
 	void fireWeapon() {
-		Debug.Log ("Turret:");
-		Debug.Log (turretDamage);
-		Debug.Log ("Missile:");
-		Debug.Log (missileDamage);
-		Debug.Log ("Laser:");
-		Debug.Log (laserDamage);
 		switch (weapontype) {
 		case PlayerManagement.WeaponType.TURRET:
 			if (player.getAmmo () >= turretCost) {

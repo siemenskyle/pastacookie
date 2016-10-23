@@ -11,7 +11,6 @@ public class Entity : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		
-		Debug.Log (explode);
 	}
 	
 	// Update is called once per frame
@@ -29,7 +28,6 @@ public class Entity : MonoBehaviour {
 
 	public int alterHealth(int change){
 		health += change;
-		Debug.Log (health);
 		return health;
 	}
 }

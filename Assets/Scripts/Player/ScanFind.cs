@@ -7,20 +7,21 @@ public class ScanFind : MonoBehaviour {
 	public GameObject planetArrowPrefab;
 	public GameObject enemyArrowPrefab;
 	public GameObject resourceArrowPrefab;
-
+	public int called;
 
 
 
 	// Use this for initialization
 	void Start () {
-	
+		called = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
-		if (Input.GetKeyDown (KeyCode.C)) {
+		if (Input.GetKeyDown (KeyCode.Space)) {
 			Scan ();
+			called++;
 		}
 	}
 
@@ -42,8 +43,13 @@ public class ScanFind : MonoBehaviour {
 	}
 
 	GameObject FindClosestResource() {
-		GameObject[] gos;
-		gos = GameObject.FindGameObjectsWithTag("resource");
+		GameObject[] energy;
+		energy = GameObject.FindGameObjectsWithTag("energy");
+		GameObject[] scrap;
+		scrap = GameObject.FindGameObjectsWithTag("scrap");
+		GameObject[] gos = new GameObject[energy.Length + scrap.Length];
+		scrap.CopyTo (gos, 0);
+		energy.CopyTo (gos, scrap.Length);
 		GameObject closest = null;
 		float distance = Mathf.Infinity;
 		Vector3 position = transform.position;
@@ -63,10 +69,10 @@ public class ScanFind : MonoBehaviour {
 		GameObject[] planet2;
 		GameObject[] planet3;
 		GameObject[] planet4;
-		planet1 = GameObject.FindGameObjectsWithTag("planet1");
-		planet2 = GameObject.FindGameObjectsWithTag("planet2");
-		planet3 = GameObject.FindGameObjectsWithTag("planet3");
-		planet4 = GameObject.FindGameObjectsWithTag("planet4");
+		planet1 = GameObject.FindGameObjectsWithTag("Planet1");
+		planet2 = GameObject.FindGameObjectsWithTag("Planet2");
+		planet3 = GameObject.FindGameObjectsWithTag("Planet3");
+		planet4 = GameObject.FindGameObjectsWithTag("Planet4");
 		GameObject[] gos = new GameObject[planet1.Length + planet2.Length + planet3.Length + planet4.Length];
 		planet1.CopyTo (gos, 0);
 		planet2.CopyTo (gos, planet1.Length);
@@ -89,7 +95,7 @@ public class ScanFind : MonoBehaviour {
 
 	GameObject FindSun() {
 		GameObject[] gos;
-		gos = GameObject.FindGameObjectsWithTag("sun");
+		gos = GameObject.FindGameObjectsWithTag("Sun");
 		GameObject closest = null;
 		float distance = Mathf.Infinity;
 		Vector3 position = transform.position;
@@ -117,20 +123,30 @@ public class ScanFind : MonoBehaviour {
 	void DrawArrows(GameObject closeEnemy, GameObject closeResource, GameObject closePlanet, GameObject sun)
 	{
 		Vector3 local = this.transform.position;
-		Vector3 enemyDirection = closeEnemy.transform.position - local;
-		Vector3 resourceDirection = closeResource.transform.position - local;
-		Vector3 planetDirection = closePlanet.transform.position - local;
-		Vector3 sunDirection = sun.transform.position - local;
-
-		enemyDirection = enemyDirection.normalized * 3;
-		resourceDirection = resourceDirection.normalized * 3;
-		planetDirection = planetDirection.normalized * 3;
-		sunDirection = sunDirection.normalized * 3;
-
-		GameObject enemyArrow = (GameObject)Instantiate(enemyArrowPrefab, transform.position, Quaternion.Euler(new Vector3(0, 0, 0)));
-		GameObject resourceArrow = (GameObject)Instantiate(resourceArrowPrefab, transform.position, Quaternion.Euler(new Vector3(0, 0, 0)));
-		GameObject planetArrow = (GameObject)Instantiate(planetArrowPrefab, transform.position, Quaternion.Euler(new Vector3(0, 0, 0)));
-		GameObject sunArrow = (GameObject)Instantiate(sunArrowPrefab, transform.position, Quaternion.Euler(new Vector3(0, 0, 0)));
+		if (closeEnemy != null) {
+			GameObject enemyArrow = (GameObject)Instantiate(enemyArrowPrefab, transform.position, Quaternion.Euler(new Vector3(0, 0, 0)));
+			enemyArrow.GetComponent<ArrowPoint> ().target = closeEnemy;
+			enemyArrow.GetComponent<ArrowPoint> ().playerShip = this.gameObject;
+			Destroy (enemyArrow, 5f);
+		}
+		if (closeResource != null) {
+			GameObject resourceArrow = (GameObject)Instantiate(resourceArrowPrefab, transform.position, Quaternion.Euler(new Vector3(0, 0, 0)));
+			resourceArrow.GetComponent<ArrowPoint> ().target = closeResource;
+			resourceArrow.GetComponent<ArrowPoint> ().playerShip = this.gameObject;
+			Destroy (resourceArrow, 5f);
+		}
+		if (closePlanet != null) {
+			GameObject planetArrow = (GameObject)Instantiate(planetArrowPrefab, transform.position, Quaternion.Euler(new Vector3(0, 0, 0)));
+			planetArrow.GetComponent<ArrowPoint> ().target = closePlanet;
+			planetArrow.GetComponent<ArrowPoint> ().playerShip = this.gameObject;
+			Destroy (planetArrow, 5f);
+		}
+		if (sun != null) {
+			GameObject sunArrow = (GameObject)Instantiate (sunArrowPrefab, transform.position, Quaternion.Euler (new Vector3 (0, 0, 0)));
+			sunArrow.GetComponent<ArrowPoint> ().target = sun;
+			sunArrow.GetComponent<ArrowPoint> ().playerShip = this.gameObject;
+			Destroy (sunArrow, 5f);
+		}
 
 	}
 }

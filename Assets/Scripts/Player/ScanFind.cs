@@ -67,7 +67,7 @@ public class ScanFind : MonoBehaviour {
 		planet2 = GameObject.FindGameObjectsWithTag("planet2");
 		planet3 = GameObject.FindGameObjectsWithTag("planet3");
 		planet4 = GameObject.FindGameObjectsWithTag("planet4");
-		GameObject gos = new GameObject[planet1.Length + planet2.Length + planet3.Length + planet4.Length];
+		GameObject[] gos = new GameObject[planet1.Length + planet2.Length + planet3.Length + planet4.Length];
 		planet1.CopyTo (gos, 0);
 		planet2.CopyTo (gos, planet1.Length);
 		planet3.CopyTo (gos, planet1.Length + planet2.Length);
@@ -127,10 +127,10 @@ public class ScanFind : MonoBehaviour {
 		planetDirection = planetDirection.normalized * 3;
 		sunDirection = sunDirection.normalized * 3;
 
-		GameObject enemyArrow = (GameObject)Instantiate(enemyArrowPrefab, transform.position, Quaternion.Euler(new Vector3(0, 0, angle)));
-		GameObject resourceArrow = (GameObject)Instantiate(resourceArrowPrefab, transform.position, Quaternion.Euler(new Vector3(0, 0, angle)));
-		GameObject planetArrow = (GameObject)Instantiate(planetArrowPrefab, transform.position, Quaternion.Euler(new Vector3(0, 0, angle)));
-		GameObject sunArrow = (GameObject)Instantiate(sunArrowPrefab, transform.position, Quaternion.Euler(new Vector3(0, 0, angle)));
+		GameObject enemyArrow = (GameObject)Instantiate(enemyArrowPrefab, transform.position, Quaternion.Euler(new Vector3(0, 0, 0)));
+		GameObject resourceArrow = (GameObject)Instantiate(resourceArrowPrefab, transform.position, Quaternion.Euler(new Vector3(0, 0, 0)));
+		GameObject planetArrow = (GameObject)Instantiate(planetArrowPrefab, transform.position, Quaternion.Euler(new Vector3(0, 0, 0)));
+		GameObject sunArrow = (GameObject)Instantiate(sunArrowPrefab, transform.position, Quaternion.Euler(new Vector3(0, 0, 0)));
 
 	}
 }

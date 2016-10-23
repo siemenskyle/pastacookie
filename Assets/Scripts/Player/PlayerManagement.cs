@@ -92,7 +92,7 @@ public class PlayerManagement : Entity
 		if (health > maxHealth)
 			health = maxHealth;
 		if (health <= 0) {
-		// TODO death
+			Destroy (gameObject);
 		}
 	}
 

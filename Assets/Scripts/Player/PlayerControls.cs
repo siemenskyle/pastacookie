@@ -13,6 +13,8 @@ public class PlayerControls : MonoBehaviour {
 	float turretCooldown;
 	float turretOnCooldownUntil;
 
+	int repairCost;
+
 	int turretCost;
 	int missileCost;
 
@@ -32,6 +34,7 @@ public class PlayerControls : MonoBehaviour {
 		turretCost = 1;
 		missileDamage = 100;
 		turretDamage = 50;
+		repairCost = 3;
 		weapontype = PlayerManagement.WeaponType.TURRET;
 	}
 	
@@ -39,6 +42,17 @@ public class PlayerControls : MonoBehaviour {
 	void FixedUpdate () {
 		checkFireWeapons ();
 		checkSwitchWeapon ();
+		checkRepair ();
+	}
+
+	void checkRepair()
+	{
+		if (Input.GetKeyDown ("r")) {
+			if ((player.getScrap () >= repairCost) && (player.getCurrentHull() < player.getMaxHull())) {
+				player.alterScrap (repairCost);
+				player.repairDamageHull (1);
+			}
+		}
 	}
 
 	void checkFireWeapons() {

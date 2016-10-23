@@ -10,6 +10,8 @@ public class UI_Script : MonoBehaviour {
 	public GUIText turretLevel;
 	public GUIText missileLevel;
 	public GUIText laserLevel;
+	public GUIText hullLevel;
+	public GUIText thrustersLevel;
 	public PlayerManagement playerData;
 	public Upgrades upgrade;
 
@@ -34,6 +36,8 @@ public class UI_Script : MonoBehaviour {
 		turretLevel.text = upgrade.turretLevel.ToString ();
 		missileLevel.text = upgrade.missileLevel.ToString ();
 		laserLevel.text = upgrade.laserLevel.ToString ();
+		hullLevel.text = upgrade.hullLevel.ToString ();
+		thrustersLevel.text = upgrade.thrusterLevel.ToString ();
 	}
 
 }

@@ -10,6 +10,7 @@ public class MissileScript : MonoBehaviour {
 	public float speed;
 	private float largeRadius = 100f;
 	private float smallRadius = 50f;
+	private float damage;
 
 	void OnTriggerStay2D(Collider2D col) {
 		if (col.gameObject.tag != "enemy") {
@@ -48,6 +49,15 @@ public class MissileScript : MonoBehaviour {
 		targets = new LinkedList<GameObject>();
 		rotationSpeed = 5f;
 		speed = 20f;
+	}
+
+	public int setDamage(int newDamage) {
+		damage = newDamage;
+		return damage;
+	}
+
+	public int getDamage() {
+		return damage;
 	}
 	
 	// Update is called once per frame

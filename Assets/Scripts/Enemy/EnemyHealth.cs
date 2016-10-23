@@ -7,7 +7,6 @@ public class EnemyHealth : Entity {
 
 	// Use this for initialization
 	void Start () {
-		health = 100;
 	}
 
 	void FixedUpdate() {

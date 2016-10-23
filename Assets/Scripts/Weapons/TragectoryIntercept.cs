@@ -32,7 +32,6 @@ public class TragectoryIntercept : MonoBehaviour {
 		float timeToImpact = target.GetComponent<Rigidbody2D> ().velocity.magnitude / bulletVelocity;
 
 		aimLoc = targetPosition + currentVelocity * timeToImpact;
-
 	}
 
 }

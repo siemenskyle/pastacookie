@@ -91,9 +91,6 @@ public class PlayerManagement : Entity
 		health += amount;
 		if (health > maxHealth)
 			health = maxHealth;
-		if (health <= 0) {
-			Destroy (gameObject);
-		}
 	}
 
 

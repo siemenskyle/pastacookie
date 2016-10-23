@@ -14,7 +14,6 @@ public class LaserScript : MonoBehaviour {
 	
 	public void FireLaser(GameObject start, Vector3 target, LayerMask mask)
 	{
-		called++;
 		Vector3 targetnew = GetWorldPositionOnPlane((target ), 0f);
 		Vector3 path = targetnew - start.transform.position;
 		path = path.normalized;
@@ -23,19 +22,18 @@ public class LaserScript : MonoBehaviour {
 		GameObject myLine = new GameObject();
 		myLine.transform.position = start.transform.position;
 		myLine.AddComponent<LineRenderer>();
+
 		LineRenderer lr = myLine.GetComponent<LineRenderer>();
 		lr.material = new Material (Shader.Find ("Particles/Alpha Blended Premultiply"));
 		lr.SetColors(Color.red, Color.red);
 		lr.SetWidth(0.1f, 0.1f);
 		lr.SetPosition(0, start.transform.position);
+
+
 		if (!rayInfo.point.Equals(Vector2.zero)) {
 			lr.SetPosition (1, rayInfo.point);
-			Debug.Log ("Stuff");
-			Debug.Log (rayInfo.point);
 		} else {
-			Debug.Log ("other");
 			lr.SetPosition (1, targetnew);
-			Debug.Log (rayInfo.point);
 		}
 		GameObject.Destroy (myLine, 1f);
 	}

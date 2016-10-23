@@ -10,20 +10,20 @@ public class PlanetScript : MonoBehaviour {
 	public bool inGravityWell;
 	public GUIText warning;
 
-	public float smallDistance = 20.0f; //Distance at which you start getting affected by gravity
-	public float smallGravity = 8.0f; //strength at which the gravity pulls
+	public float smallDistance = 40.0f; //Distance at which you start getting affected by gravity
+	public float smallGravity = 20.0f; //strength at which the gravity pulls
 
-	public float medDistance = 30.0f;
-	public float medGravity = 12.0f;
+	public float medDistance = 50.0f;
+	public float medGravity = 30.0f;
 
-	public float largeDistance = 50.0f;
-	public float largeGravity = 20.0f;
+	public float largeDistance = 80.0f;
+	public float largeGravity = 50.0f;
 
-	public float exLargeDistance = 80.0f;
-	public float exLargeGravity = 30.0f;
+	public float exLargeDistance = 120.0f;
+	public float exLargeGravity = 80.0f;
 
 	public float sunDistance = 300.0f;
-	public float sunGravity = 80.0f;
+	public float sunGravity = 100.0f;
 
 	private GameObject[] planets1; 
 	private GameObject[] planets2; 

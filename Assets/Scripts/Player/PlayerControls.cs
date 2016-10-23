@@ -16,6 +16,9 @@ public class PlayerControls : MonoBehaviour {
 	int turretCost;
 	int missileCost;
 
+	int turretDamage;
+	int missileDamage;
+
 	// Use this for initialization
 	void Start () {
 		turretScript = gameObject.GetComponent<PlayerTurret> ();
@@ -27,6 +30,8 @@ public class PlayerControls : MonoBehaviour {
 		turretOnCooldownUntil = Time.time;
 		missileCost = 5;
 		turretCost = 1;
+		missileDamage = 100;
+		turretDamage = 50;
 		weapontype = PlayerManagement.WeaponType.TURRET;
 	}
 	
@@ -62,7 +67,7 @@ public class PlayerControls : MonoBehaviour {
 		case PlayerManagement.WeaponType.TURRET:
 			if (player.getAmmo () >= turretCost) {
 				if (turretOnCooldownUntil < Time.time) {
-					turretScript.shoot ();
+					turretScript.shoot (turretDamage);
 					turretOnCooldownUntil = Time.time + turretCooldown;
 					player.alterAmmo (-turretCost);
 				}
@@ -71,7 +76,7 @@ public class PlayerControls : MonoBehaviour {
 		case PlayerManagement.WeaponType.MISSILES:
 			if (player.getAmmo () >= missileCost) {
 				if (missileOnCooldownUntil < Time.time) {
-					missileScript.shoot ();
+					missileScript.shoot (missileDamage);
 					missileOnCooldownUntil = Time.time + missileCooldown;
 					player.alterAmmo (-(missileCost));
 				}

@@ -12,7 +12,7 @@ public class PlayerTurret : MonoBehaviour {
 		
 	}
 
-	public void shoot() {
+	public void shoot(int damage) {
 		Vector3 startingPosition = GetWorldPositionOnPlane(Input.mousePosition, 0f);
 		Vector2 startingAngle = new Vector2(startingPosition.x - transform.position.x, startingPosition.y - transform.position.y);
 		// Make current ships movement added to the velocity
@@ -27,6 +27,8 @@ public class PlayerTurret : MonoBehaviour {
 		startingVelocity = new Vector2 (startingVelocity.x + addedVelocity.x, startingVelocity.y + addedVelocity.y);
 		GameObject spawnedBullet = (GameObject)Instantiate(bulletPrefab, transform.position, Quaternion.Euler(new Vector3(0, 0, angle)));
 		spawnedBullet.GetComponent<Rigidbody2D> ().velocity = startingVelocity;
+		BulletScript newBulletScript = spawnedBullet.GetComponent<BulletScript> ();
+		newBulletScript.setDamage(damage);
 		DestroyObject (spawnedBullet, 10f);
 	}
 

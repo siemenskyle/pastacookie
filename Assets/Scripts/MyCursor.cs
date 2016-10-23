@@ -10,11 +10,4 @@ public class MyCursor : MonoBehaviour {
 	void Start () {
 		Cursor.SetCursor (cursorTexture, hotSpot, cursorMode);
 	}
-
-	void OnMouseEnter() {
-		Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
-	}
-	void OnMouseExit() {
-		Cursor.SetCursor(null, Vector2.zero, cursorMode);
-	}
 }

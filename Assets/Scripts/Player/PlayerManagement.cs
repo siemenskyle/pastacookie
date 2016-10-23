@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerManagement : Entity 
 {
 	public enum Resource {AMMO, ENERGY, SCRAP};
-	public enum WeaponType {GUNS, MISSILES, LASERS};
+	public enum WeaponType {TURRET, MISSILES, LASERS};
 	// Use this for initialization
 	public int scrap;
 	public int energy;
@@ -25,14 +25,14 @@ public class PlayerManagement : Entity
 	}
 		
 	public int alterAmmo(int change){
-		if (ammo + change > 0) {
+		if (ammo + change >= 0) {
 			ammo += change;
 		}
 		return ammo;
 	}
 
 	public int alterEnergy(int change){
-		if (energy + change > 0) {
+		if (energy + change >= 0) {
 			energy += change;
 		}
 		return energy;

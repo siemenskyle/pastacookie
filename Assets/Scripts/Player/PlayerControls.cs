@@ -6,25 +6,28 @@ public class PlayerControls : MonoBehaviour {
 	PlayerMissile missileScript;
 	PlayerTurret turretScript;
 	string[] weaponsList;
+	PlayerManagement.WeaponType weapontype;
 	int selectedWeaponIndex;
 	float missileCooldown;
 	float missileOnCooldownUntil;
 	float turretCooldown;
 	float turretOnCooldownUntil;
 
+	int turretCost;
+	int missileCost;
+
 	// Use this for initialization
 	void Start () {
-		weaponsList = new string[2];
-		weaponsList[0] = "turret";
-		weaponsList[1] = "missile";
-		selectedWeaponIndex = 0;
 		turretScript = gameObject.GetComponent<PlayerTurret> ();
 		missileScript = gameObject.GetComponent<PlayerMissile> ();
 		player = gameObject.GetComponent<PlayerManagement> ();
 		missileCooldown = 3f;
 		missileOnCooldownUntil = Time.time;
-		turretCooldown = 3f;
+		turretCooldown = 0.2f;
 		turretOnCooldownUntil = Time.time;
+		missileCost = 5;
+		turretCost = 1;
+		weapontype = PlayerManagement.WeaponType.TURRET;
 	}
 	
 	// Update is called once per frame
@@ -46,30 +49,32 @@ public class PlayerControls : MonoBehaviour {
 	}
 
 	void switchWeapon() {
-		selectedWeaponIndex += 1;
-		if (selectedWeaponIndex >= weaponsList.Length) {
-			selectedWeaponIndex = 0;
+		if (weapontype == PlayerManagement.WeaponType.TURRET) {
+			weapontype = PlayerManagement.WeaponType.MISSILES;
+		} else if (weapontype == PlayerManagement.WeaponType.MISSILES) {
+			weapontype = PlayerManagement.WeaponType.TURRET;
 		}
+		player.setWeaponType (weapontype);
 	}
 
 	void fireWeapon() {
-		switch (weaponsList[selectedWeaponIndex]) {
-		case "turret":
-			if (player.getAmmo () > 1) {
+		switch (weapontype) {
+		case PlayerManagement.WeaponType.TURRET:
+			if (player.getAmmo () >= turretCost) {
 				if (turretOnCooldownUntil < Time.time) {
 					turretScript.shoot ();
 					turretOnCooldownUntil = Time.time + turretCooldown;
+					player.alterAmmo (-turretCost);
 				}
-				player.alterAmmo (-1);
 			}
 			break;
-		case "missile":
-			if (player.getAmmo () > 5) {
+		case PlayerManagement.WeaponType.MISSILES:
+			if (player.getAmmo () >= missileCost) {
 				if (missileOnCooldownUntil < Time.time) {
 					missileScript.shoot ();
 					missileOnCooldownUntil = Time.time + missileCooldown;
+					player.alterAmmo (-(missileCost));
 				}
-				player.alterAmmo (-5);
 			}
 			break;
 		}

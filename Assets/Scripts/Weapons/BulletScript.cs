@@ -16,4 +16,14 @@ public class BulletScript : MonoBehaviour {
 	void Start () {
 		
 	}
+
+	public int setDamage(int newDamage) {
+		damage = newDamage;
+		return damage;
+	}
+
+	public int getDamage() {
+		return damage;
+	}
+
 }

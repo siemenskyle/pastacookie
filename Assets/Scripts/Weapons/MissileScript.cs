@@ -25,7 +25,7 @@ public class MissileScript : MonoBehaviour {
 		} else if (Vector3.Distance (col.gameObject.transform.position, gameObject.transform.position) <= 2f) {
 			foreach (GameObject enemy in targets) {
 				if (Vector3.Distance (enemy.transform.position, gameObject.transform.position) <= 6f)
-					enemy.GetComponent<EnemyHealth> ().alterHealth (-100);
+					enemy.GetComponent<EnemyHealth> ().alterHealth (-damage);
 			}
 			Destroy (gameObject);
 		}

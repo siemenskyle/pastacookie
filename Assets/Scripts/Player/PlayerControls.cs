@@ -37,14 +37,11 @@ public class PlayerControls : MonoBehaviour {
 		missileOnCooldownUntil = Time.time;
 		turretCooldown = 0.2f;
 		turretOnCooldownUntil = Time.time;
-		laserCooldown = 1.5f;
+		laserCooldown = 0.2f;
 		laserOnCooldownUntil = Time.time;
 		missileCost = 5;
 		turretCost = 1;
 		laserCost = 1;
-		missileDamage = 100;
-		turretDamage = 50;
-		laserDamage = 100;
 		repairCost = 3;
 		weapontype = PlayerManagement.WeaponType.TURRET;
 	}

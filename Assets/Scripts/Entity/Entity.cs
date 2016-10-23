@@ -19,17 +19,17 @@ public class Entity : MonoBehaviour {
 		if (health <= 0) {
 			GameObject ex = (GameObject) Object.Instantiate (explode);
 			//Invoke ("kill", 0.1f);
-			Destroy (gameObject);
+			Destroy (this.gameObject);
 		}
 	}
 
 	void kill(){
-		
 		Destroy (gameObject);
 	}
 
 	public int alterHealth(int change){
 		health += change;
+		Debug.Log (health);
 		return health;
 	}
 }

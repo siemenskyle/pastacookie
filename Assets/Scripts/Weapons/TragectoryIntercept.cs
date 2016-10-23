@@ -21,9 +21,11 @@ public class TragectoryIntercept : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
+		if (!target) {
+			return;
+		}
 		Vector3 originPosition = origin.transform.position;
-		Vector3 targetPosition = origin.transform.position;
+		Vector3 targetPosition = target.transform.position;
 		Vector3 directionToFrom = originPosition - targetPosition;
 
 		currentVelocity = (target.transform.position - prevLoc) / Time.deltaTime;

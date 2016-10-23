@@ -7,7 +7,7 @@ public class BulletScript : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col) {
 		if (col.gameObject.tag == "enemy") {
-			col.gameObject.GetComponent<EnemyHealth> ().alterHealth(-damage);
+			col.gameObject.GetComponent<Entity> ().alterHealth(-damage);
 			Destroy (gameObject);
 		}
 	}

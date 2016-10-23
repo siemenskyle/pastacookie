@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyHealth : MonoBehaviour {
+public class EnemyHealth : Entity {
 
-	public int health;
+	//public int health;
 
 	// Use this for initialization
 	void Start () {
-		health = 100;
+		//health = 100;
 	}
 
 	void FixedUpdate() {
@@ -16,8 +16,4 @@ public class EnemyHealth : MonoBehaviour {
 		}
 	}
 
-	public int alterHealth(int change) {
-		health += change;
-		return health;
-	}
 }

@@ -26,6 +26,13 @@ public class PlayerMove : MonoBehaviour {
 		bl = GetComponentsInChildren<Animator>()[2];
 		br = GetComponentsInChildren<Animator>()[3];
 		time = 0;
+		if (boostCost == 0) {
+			boostCost = 1;
+		}
+		if (boostTick == 0) {
+			boostTick = 1;
+		}
+
 	}
 	
 	// Update is bad dont use it

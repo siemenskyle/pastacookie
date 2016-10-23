@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Boss : EnemyHealth {
 
@@ -59,5 +60,16 @@ public class Boss : EnemyHealth {
 			Object.Instantiate (enemyShip, spawn2.position, new Quaternion());
 		spawnswapper = !spawnswapper;
 		spawnWait = false;
+	}
+
+	void Update () {
+		if (health <= 0) {
+			sprite.enabled = false;
+			Invoke ("win", 2f );
+		}
+	}
+
+	void win(){
+		Application.LoadLevel ("EndScreen");
 	}
 }

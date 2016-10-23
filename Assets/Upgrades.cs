@@ -51,7 +51,7 @@ public class Upgrades : MonoBehaviour {
 		laserLevelStrength = new int[4]{3, 5, 8, 12};
 		thrusterLevelStrength = new int[4]{4, 6, 8, 10};
 		BoostLevelStrength = new float[4]{3.0f, 3.5f, 4.0f, 5.0f};
-		hullLevelStrength = new int[4]{3, 4, 6, 10};
+		hullLevelStrength = new int[4]{10, 12, 15, 20};
 
 		movement = gameObject.GetComponent<PlayerMove> ();
 		turret = gameObject.GetComponent<PlayerTurret> ();

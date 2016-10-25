@@ -17,7 +17,12 @@ public class Entity : MonoBehaviour {
 	void Update () {
 		if (health <= 0) {
 			//GameObject ex = (GameObject) Object.Instantiate (explode, transform);
-			Destroy (gameObject);
+			if (this.tag == "Player") {
+				GetComponent<Rigidbody2D> ().isKinematic = true;
+				GetComponent<SpriteRenderer> ().enabled = false;
+			}
+			else
+				Destroy (gameObject);
 		}
 	}
 
